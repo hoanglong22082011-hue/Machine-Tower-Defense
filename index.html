@@ -14,67 +14,86 @@
       <p class="text-gray-400 italic">Alpha Release</p>
     </header>
 
-    <!-- Units Section -->
-    <section>
-      <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
-      
-      <div class="space-y-6">
-        <div>
-          <h3 class="text-xl font-bold text-gray-200">Normal Agent <span class="text-gray-500 text-sm">(Basic Unit)</span></h3>
-          <ul class="list-disc list-inside text-gray-400 ml-4">
-            <li>Kameraman</li>
-            <li>Spikerman</li>
-            <li>TeleVisionman</li>
-            <li>SkiToilet</li>
-          </ul>
-        </div>
+ <!-- Units Section -->
+<section>
+  <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
 
-        <div>
-          <h3 class="text-xl font-bold text-purple-400">Special Agent <span class="text-gray-500 text-sm">(Rare Unit – Epic Unit)</span></h3>
-          <ul class="list-disc list-inside text-gray-400 ml-4">
-            <li>Plunger Kameraman</li>
-            <li>Dark Knife Spikerman</li>
-            <li>Daddy Televionman-Astro Arc(Soon)</li>
-            <li>Scientist SkiToilet</li>
-            <li>Scientist Kameraman</li>
-            <li>Scientist Televisionman</li>
-            <li>Scientist Spikerman</li>
-          </ul>
-        </div>
+  <div class="unit-grid">
+    <!-- Normal Agent -->
+    <div class="unit-card normal">
+      <h3>Normal Agent <span class="text-gray-500 text-sm">(Basic Unit)</span></h3>
+      <ul>
+        <li>Kameraman</li>
+        <li>Spikerman</li>
+        <li>TeleVisionman</li>
+        <li>SkiToilet</li>
+      </ul>
+    </div>
 
-        <div>
-          <h3 class="text-xl font-bold text-yellow-400">Large Agent <span class="text-gray-500 text-sm">(Legendary)</span></h3>
-          <ul class="list-disc list-inside text-gray-400 ml-4">
-            <li>Large Kameraman</li>
-            <li>Large Spikerman</li>
-            <li>Large Televisionman</li>
-            <li>Large SkiToilet(Soon)</li>
-            <li>Large Scientist Kameraman(Soon)</li>
-          </ul>
-        </div>
+    <!-- Special Agent -->
+    <div class="unit-card special">
+      <h3>Special Agent <span class="text-gray-500 text-sm">(Rare – Epic)</span></h3>
+      <ul>
+        <li>Plunger Kameraman</li>
+        <li>Dark Knife Spikerman</li>
+        <li>Daddy Televisionman – Astro Arc (Soon)</li>
+        <li>Scientist SkiToilet</li>
+        <li>Scientist Kameraman</li>
+        <li>Scientist Televisionman</li>
+        <li>Scientist Spikerman</li>
+      </ul>
+    </div>
 
-        <div>
-          <h3 class="text-xl font-bold text-red-500">Titan <span class="text-gray-500 text-sm">(Mythic)</span></h3>
-          <ul class="list-disc list-inside text-gray-400 ml-4">
-            <li>Titan Kameraman (In Alpha Release)</li>
-            <li>Titan Spikerman(In Alpha Update)</li>
-            <li>Titan Televisionman(In TV Arc Update)</li>
-            <li>Boss G-Toilet</li>
-          </ul>
-        </div>
-        <h3 class="text-xl font-bold text-#007bff-500">Upgraded Titan <span class="text-gray-500 text-sm">(Godly)</span></h3>
-          <ul class="list-disc list-inside text-gray-400 ml-4">
-            <li>Upgraded Titan Kameraman(In Upgraded Update Part 1)</li>
-            <li>Upgraded Titan Spikerman(In Upgraded Update Part 2)</li>
-            <li>Upgraded Titan Televisionman(In Upgraded Update Part 3)</li>
-            <li>Superior Boss G-Toilet (In Alpha Hills Update)</li>
-          </ul>
-        </div>
-        <p class="text-sm text-gray-500 italic">
-          Note: Toilet will release in Astro Arc Update and Scientist Units in Scientist Update, will be added later.
-        </p>
-      </div>
-    </section>
+    <!-- Large Agent -->
+    <div class="unit-card large">
+      <h3>Large Agent <span class="text-gray-500 text-sm">(Legendary)</span></h3>
+      <ul>
+        <li>Large Kameraman</li>
+        <li>Large Spikerman</li>
+        <li>Large Televisionman</li>
+        <li>Large SkiToilet (Soon)</li>
+        <li>Large Scientist Kameraman (Soon)</li>
+      </ul>
+    </div>
+
+    <!-- Titan -->
+    <div class="unit-card titan">
+      <h3>Titan <span class="text-gray-500 text-sm">(Mythic)</span></h3>
+      <ul>
+        <li>Titan Kameraman (In Alpha Release)</li>
+        <li>Titan Spikerman (In Alpha Update)</li>
+        <li>Titan Televisionman (In TV Arc Update)</li>
+        <li>Boss G-Toilet</li>
+      </ul>
+    </div>
+
+    <!-- Upgraded Titan -->
+    <div class="unit-card titan">
+      <h3 style="color:#007bff; text-shadow:0 0 5px #007bff,0 0 15px #00aaff,0 0 30px #00ccff; animation:pulseBlue 1.8s infinite alternate;">
+        Upgraded Titan <span class="text-gray-500 text-sm">(Godly)</span>
+      </h3>
+      <ul>
+        <li>Upgraded Titan Kameraman (In Upgraded Update Part 1)</li>
+        <li>Upgraded Titan Spikerman (In Upgraded Update Part 2)</li>
+        <li>Upgraded Titan Televisionman (In Upgraded Update Part 3)</li>
+        <li>Superior Boss G-Toilet (In Alpha Hills Update)</li>
+      </ul>
+    </div>
+
+    <!-- Admin Unit -->
+    <div class="unit-card admin">
+      <h3>Admin Unit <span class="text-gray-500 text-sm">(???)</span></h3>
+      <ul>
+        <li>???</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="text-sm text-gray-500 italic mt-4">
+    Note: Toilet will release in Astro Arc Update and Scientist Units in Scientist Update, will be added later.
+  </p>
+</section>
+
 
     <!-- Modes Section - Every 10s skip 1 wave -->
     <section>
