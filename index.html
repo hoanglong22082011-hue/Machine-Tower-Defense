@@ -407,7 +407,7 @@
   }
 </script>
 
-  <!-- ================= SUMMON SIMULATOR ================= -->
+      <!-- ================= SUMMON SIMULATOR ================= -->
     <section class="text-center mt-16">
       <h2 class="text-2xl font-semibold text-yellow-300 mb-4">🎲 Summon Simulator</h2>
       <p class="text-gray-400 mb-3">Try your luck and summon Units based on actual rates!</p>
@@ -506,102 +506,30 @@
       document.getElementById('popup').classList.remove('flex');
     }
 
-    <script>
-<script>
- // 🎲 Summon Simulator
-const summonRates = [
-  { name: 'Kameraman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
-  { name: 'Spikerman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
-  { name: 'Televsionman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
-  { name: 'SkiToilet', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
-  { name: 'Plunger Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Dark Knife Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Scientist Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Scientist SkiToilet', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Scientist Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Scientist Televisionman', rate: 28/7, count: 0, rarity: 'Special Agent' },
-  { name: 'Large Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
-  { name: 'Large Spikerman', rate: 1/5, count: 0, rarity: 'Large Agent' },
-  { name: 'Large Televisionman', rate: 1/5, count: 0, rarity: 'Large Agent' },
-  { name: 'Large Scientist Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
-  { name: 'Large SkiToilet', rate: 1/5, count: 0, rarity: 'Large Agent' },
-  { name: 'Titan Kameraman', rate: 0.01/3, count: 0, rarity: 'Titans' },
-  { name: 'Titan Spikerman', rate: 0.01/3, count: 0, rarity: 'Titans' },
-  { name: 'Titan Televsionman', rate: 0.01/3, count: 0, rarity: 'Titans' },
-  { name: 'Upgraded Titan Kameraman', rate: 0.000001, count: 0, rarity: 'Upgraded Titans' }
-];
+    // 🎲 Summon Simulator
+    const summonRates = [
+      { name: 'Normal Agent', rate: 70.898999 },
+      { name: 'Special Agent', rate: 28 },
+      { name: 'Large Agent', rate: 1 },
+      { name: 'Titan', rate: 0.01 },
+      { name: 'Upgraded Titan', rate: 0.000001 }
+    ];
 
-let pointsSpent = 0;
-
-// Hàm summon 1 unit (tăng count & pointsSpent)
-function summonUnit() {
-  const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
-  let rand = Math.random() * totalRate;
-
-  for (let unit of summonRates) {
-    if (rand < unit.rate) {
-      unit.count++;
-      pointsSpent += 100; // tăng points spent
-      return unit;
+    function summon(times) {
+      let results = [];
+      for (let i = 0; i < times; i++) {
+        let roll = Math.random() * 100;
+        let total = 0;
+        for (let unit of summonRates) {
+          total += unit.rate;
+          if (roll <= total) {
+            results.push(unit.name);
+            break;
+          }
+        }
+      }
+      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
     }
-    rand -= unit.rate;
-  }
-  return null;
-}
-
-// Hàm summon nhiều lần
-function summon(times) {
-  const results = [];
-  for (let i = 0; i < times; i++) {
-    const unit = summonUnit();
-    if (unit) results.push(unit.name);
-  }
-
-  // hiển thị kết quả
-  const resultElement = document.getElementById('summon-result');
-  if (resultElement) {
-    resultElement.innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-  }
-
-  // cập nhật card (nếu có container)
-  const container = document.getElementById('cardsContainer');
-  if (container) renderCards(container);
-}
-
-// Hàm render card theo rarity
-function renderCards(container) {
-  container.innerHTML = '';
-
-  const rarities = {};
-  summonRates.forEach(unit => {
-    if (!rarities[unit.rarity]) rarities[unit.rarity] = [];
-    rarities[unit.rarity].push(unit);
-  });
-
-  for (let rarity in rarities) {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `<strong>${rarity}</strong> - Total Units: ${rarities[rarity].reduce((s,u)=>s+u.count,0)}`;
-
-    const list = document.createElement('ul');
-    list.className = 'unit-list';
-    rarities[rarity].forEach(unit => {
-      const li = document.createElement('li');
-      li.innerText = `${unit.name}: ${unit.count}`;
-      list.appendChild(li);
-    });
-
-    card.appendChild(list);
-    card.addEventListener('click', () => {
-      list.style.display = list.style.display === 'none' ? 'block' : 'none';
-    });
-
-    container.appendChild(card);
-  }
-}
-
-</script>
-
+  </script>
 </body>
 </html>
