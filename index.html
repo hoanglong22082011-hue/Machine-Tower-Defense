@@ -508,27 +508,87 @@
 
     // 🎲 Summon Simulator
   const summonRates = [
-  { name: 'Kameraman', rate: 70.898999/4 },
-  { name: 'Spikerman', rate: 70.898999/4 },
-  { name: 'Televsionman', rate: 70.898999/4 },
-  { name: 'SkiToilet', rate: 70.898999/4 },
-  { name: 'Plunger Kameraman', rate: 28/7 },
-  { name: 'Dark Knife Spikerman', rate: 28/7 },
-  { name: 'Scientist Spikerman', rate: 28/7 },
-  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7 },
-  { name: 'Scientist SkiToilet', rate: 28/7 },
-  { name: 'Scientist Kameraman', rate: 28/7 },
-  { name: 'Scientist Televisionman', rate: 28/7 },
-  { name: 'Large Kameraman', rate: 1/5 },
-  { name: 'Large Spikerman', rate: 1/5 },
-  { name: 'Large Televisionman', rate: 1/5 },
-  { name: 'Large Scientist Kameraman', rate: 1/5 },
-  { name: 'Large SkiToilet', rate: 1/5 },
-  { name: 'Titan Kameraman', rate: 0.01/3 },
-  { name: 'Titan Spikerman', rate: 0.01/3 },
-  { name: 'Titan Televsionman', rate: 0.01/3 },
-  { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
+  { name: 'Kameraman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Spikerman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Televsionman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'SkiToilet', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Plunger Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Dark Knife Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist SkiToilet', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Televisionman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Large Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Spikerman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Televisionman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Scientist Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large SkiToilet', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Titan Kameraman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Titan Spikerman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Titan Televsionman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Upgraded Titan Kameraman', rate: 0.000001, count: 0, rarity: 'Upgraded Titans' }
 ];
+
+let pointsSpent = 0;
+
+function summonUnit() {
+  const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
+  let rand = Math.random() * totalRate;
+
+  for (let unit of summonRates) {
+    if (rand < unit.rate) {
+      unit.count++;
+      pointsSpent += 100; // tính points đã tiêu (vẫn giữ record)
+      return unit;
+    }
+    rand -= unit.rate;
+  }
+  return null;
+}
+
+// summon nhiều lần
+function summon(times) {
+  const results = [];
+  for (let i = 0; i < times; i++) {
+    const unit = summonUnit();
+    if (unit) results.push(unit);
+  }
+  return results;
+}
+
+// render card (có thể gắn vô GUI Roblox sau)
+function renderCards(container) {
+  container.innerHTML = '';
+
+  const rarities = {};
+  summonRates.forEach(unit => {
+    if (!rarities[unit.rarity]) rarities[unit.rarity] = [];
+    rarities[unit.rarity].push(unit);
+  });
+
+  for (let rarity in rarities) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `<strong>${rarity}</strong> - Total Units: ${rarities[rarity].reduce((s,u)=>s+u.count,0)}`;
+    
+    const list = document.createElement('ul');
+    list.className = 'unit-list';
+    rarities[rarity].forEach(unit => {
+      const li = document.createElement('li');
+      li.innerText = `${unit.name}: ${unit.count}`;
+      list.appendChild(li);
+    });
+
+    card.appendChild(list);
+    card.addEventListener('click', () => {
+      list.style.display = list.style.display === 'none' ? 'block' : 'none';
+    });
+
+    container.appendChild(card);
+  }
+}
+
 
 
     function summon(times) {
