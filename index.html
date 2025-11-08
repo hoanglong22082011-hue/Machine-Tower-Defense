@@ -531,22 +531,6 @@
     { name: 'Titan Televsionman', rate: 0.01/3, count: 0 },
     { name: 'Upgraded Titan Kameraman', rate: 0.000001, count: 0 }
   ];
-
-  let pointsSpent = 0;
-
-  function summonUnit() {
-    const totalRate = summonRates.reduce((sum, u) => sum + u.rate, 0);
-    let rand = Math.random() * totalRate;
-    for (let unit of summonRates) {
-      if (rand < unit.rate) {
-        unit.count++;         // tăng số unit được summon
-        pointsSpent += 100;   // tăng pointsSpent
-        return unit;
-      }
-      rand -= unit.rate;
-    }
-    return null;
-  }
  function summon(times) 
  {
 let results = []; for (let i = 0; i < times; i++) 
