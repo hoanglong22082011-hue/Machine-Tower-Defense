@@ -547,25 +547,20 @@
     }
     return null;
   }
-
-  function summon(times) {
-    const results = [];
-    for (let i = 0; i < times; i++) {
-      const unit = summonUnit();
-      if (unit) results.push(unit.name);
+ function summon(times) 
+ {
+let results = []; for (let i = 0; i < times; i++) 
+{
+  let roll = Math.random() * 100; let total = 0; for (let unit of summonRates)
+  { 
+    total += unit.rate; if (roll <= total)
+    { 
+      results.push(unit.name); break; 
     }
-    function summon(times) { 
-      let results = []; for (let i = 0; i < times; i++) 
-      { let roll = Math.random() * 100; let total = 0; for (let unit of summonRates) 
-      { total += unit.rate; if (roll <= total) 
-      { results.push(unit.name); break;
-     }
-      }
-      } 
-
-    const summary = summonRates.map(u => `${u.name}: ${u.count}`).join('<br>');
-    document.getElementById('summon-result').innerHTML = 🎁 You got:<br>${results.join(', ')};
-       }
+  }
+}
+   document.getElementById('summon-result').innerHTML = 🎁 You got:<br>${results.join(', ')};
+ }
 </script>
 
 </body>
