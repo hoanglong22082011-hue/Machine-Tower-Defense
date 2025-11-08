@@ -514,6 +514,16 @@
 <div id="cardsContainer"></div>
 
 <script>
+<h2>🎲 Summon Simulator</h2>
+
+<button onclick="summon(1)">Summon 1 Unit</button>
+<button onclick="summon(10)">Summon 10 Units</button>
+<p>Points spent: <span id="pointsSpent">0</span></p>
+
+<div id="summon-result"></div>
+<div id="cardsContainer"></div>
+
+<script>
 const summonRates = [
   { name: 'Kameraman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
   { name: 'Spikerman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
@@ -593,6 +603,7 @@ function renderCards(container) {
 
 // Render lần đầu
 renderCards(document.getElementById('cardsContainer'));
+    
 </script>
 
 </body>
