@@ -591,21 +591,25 @@ function renderCards(container) {
 
 
 
-    function summon(times) {
-      let results = [];
-      for (let i = 0; i < times; i++) {
-        let roll = Math.random() * 100;
-        let total = 0;
-        for (let unit of summonRates) {
-          total += unit.rate;
-          if (roll <= total) {
-            results.push(unit.name);
-            break;
-          }
-        }
+function summon(times) {
+  const results = [];
+  for (let i = 0; i < times; i++) {
+    const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
+    let rand = Math.random() * totalRate;
+
+    for (let unit of summonRates) {
+      if (rand < unit.rate) {
+        unit.count++;        // tăng bộ đếm unit
+        pointsSpent += 100;  // tính points đã tiêu
+        results.push(unit.name); // lưu kết quả summon
+        break;
       }
-      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+      rand -= unit.rate;
     }
+  }
+  document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+  renderCards(document.getElementById('cardsContainer'));
+}
   </script>
 </body>
 </html>
