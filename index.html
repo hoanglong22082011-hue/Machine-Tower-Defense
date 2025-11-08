@@ -506,46 +506,62 @@
       document.getElementById('popup').classList.remove('flex');
     }
 
-    // 🎲 Summon Simulator
-const summonRates = [
-  { name: 'Kameraman', rate: 70.898999/4 },
-  { name: 'Spikerman', rate: 70.898999/4 },
-  { name: 'Televsionman', rate: 70.898999/4 },
-  { name: 'SkiToilet', rate: 70.898999/4 },
-  { name: 'Plunger Kameraman', rate: 28/7 },
-  { name: 'Dark Knife Spikerman', rate: 28/7 },
-  { name: 'Scientist Spikerman', rate: 28/7 },
-  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7 },
-  { name: 'Scientist SkiToilet', rate: 28/7 },
-  { name: 'Scientist Kameraman', rate: 28/7 },
-  { name: 'Scientist Televisionman', rate: 28/7 },
-  { name: 'Large Kameraman', rate: 1/5 },
-  { name: 'Large Spikerman', rate: 1/5 },
-  { name: 'Large Televisionman', rate: 1/5 },
-  { name: 'Large Scientist Kameraman', rate: 1/5 },
-  { name: 'Large SkiToilet', rate: 1/5 },
-  { name: 'Titan Kameraman', rate: 0.01/3 },
-  { name: 'Titan Spikerman', rate: 0.01/3 },
-  { name: 'Titan Televsionman', rate: 0.01/3 },
-  { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
-];
+    <script>
+  // 🎲 Summon Simulator with counters
+  const summonRates = [
+    { name: 'Kameraman', rate: 70.898999/4, count: 0 },
+    { name: 'Spikerman', rate: 70.898999/4, count: 0 },
+    { name: 'Televsionman', rate: 70.898999/4, count: 0 },
+    { name: 'SkiToilet', rate: 70.898999/4, count: 0 },
+    { name: 'Plunger Kameraman', rate: 28/7, count: 0 },
+    { name: 'Dark Knife Spikerman', rate: 28/7, count: 0 },
+    { name: 'Scientist Spikerman', rate: 28/7, count: 0 },
+    { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7, count: 0 },
+    { name: 'Scientist SkiToilet', rate: 28/7, count: 0 },
+    { name: 'Scientist Kameraman', rate: 28/7, count: 0 },
+    { name: 'Scientist Televisionman', rate: 28/7, count: 0 },
+    { name: 'Large Kameraman', rate: 1/5, count: 0 },
+    { name: 'Large Spikerman', rate: 1/5, count: 0 },
+    { name: 'Large Televisionman', rate: 1/5, count: 0 },
+    { name: 'Large Scientist Kameraman', rate: 1/5, count: 0 },
+    { name: 'Large SkiToilet', rate: 1/5, count: 0 },
+    { name: 'Titan Kameraman', rate: 0.01/3, count: 0 },
+    { name: 'Titan Spikerman', rate: 0.01/3, count: 0 },
+    { name: 'Titan Televsionman', rate: 0.01/3, count: 0 },
+    { name: 'Upgraded Titan Kameraman', rate: 0.000001, count: 0 }
+  ];
 
+  let pointsSpent = 0;
 
-    function summon(times) {
-      let results = [];
-      for (let i = 0; i < times; i++) {
-        let roll = Math.random() * 100;
-        let total = 0;
-        for (let unit of summonRates) {
-          total += unit.rate;
-          if (roll <= total) {
-            results.push(unit.name);
-            break;
-          }
-        }
+  function summonUnit() {
+    const totalRate = summonRates.reduce((sum, u) => sum + u.rate, 0);
+    let rand = Math.random() * totalRate;
+    for (let unit of summonRates) {
+      if (rand < unit.rate) {
+        unit.count++;         // tăng số unit được summon
+        pointsSpent += 100;   // tăng pointsSpent
+        return unit;
       }
-      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+      rand -= unit.rate;
     }
-  </script>
+    return null;
+  }
+
+  function summon(times) {
+    const results = [];
+    for (let i = 0; i < times; i++) {
+      const unit = summonUnit();
+      if (unit) results.push(unit.name);
+    }
+
+    // Hiển thị kết quả và tổng points spent + unit count
+    const summary = summonRates.map(u => `${u.name}: ${u.count}`).join('<br>');
+    document.getElementById('summon-result').innerHTML =
+      `🎁 You got:<br>${results.join(', ')}<br><br>
+       💰 Total Points Spent: ${pointsSpent}<br><br>
+       📝 Units Count:<br>${summary}`;
+  }
+</script>
+
 </body>
 </html>
