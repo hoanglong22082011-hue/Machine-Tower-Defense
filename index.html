@@ -3,161 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Machine Tower Defense Update Log- Alpha Release</title>
+  <title>Machine Tower Defense Update Log - Alpha Release</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-black text-gray-100 font-sans">
   <div class="max-w-5xl mx-auto px-6 py-10 space-y-12">
-    
     <header class="text-center">
       <h1 class="text-4xl font-bold text-white mb-2">Machine Tower Defense</h1>
       <p class="text-gray-400 italic">Alpha Release</p>
     </header>
 
- <!-- Units Section -->
-<section>
-  <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
-
-  <div class="unit-grid">
-    <!-- Normal Agent -->
-    <div class="unit-card normal">
-      <h3>Normal Agent <span class="text-gray-500 text-sm">(Basic Unit)</span></h3>
-      <ul>
-        <li>Kameraman</li>
-        <li>Spikerman</li>
-        <li>TeleVisionman</li>
-        <li>SkiToilet</li>
-      </ul>
-    </div>
-
-    <!-- Special Agent -->
-    <div class="unit-card special">
-      <h3>Special Agent <span class="text-gray-500 text-sm">(Rare – Epic)</span></h3>
-      <ul>
-        <li>Plunger Kameraman</li>
-        <li>Dark Knife Spikerman</li>
-        <li>Daddy Televisionman – Astro Arc (Soon)</li>
-        <li>Scientist SkiToilet</li>
-        <li>Scientist Kameraman</li>
-        <li>Scientist Televisionman</li>
-        <li>Scientist Spikerman</li>
-      </ul>
-    </div>
-
-    <!-- Large Agent -->
-    <div class="unit-card large">
-      <h3>Large Agent <span class="text-gray-500 text-sm">(Legendary)</span></h3>
-      <ul>
-        <li>Large Kameraman</li>
-        <li>Large Spikerman</li>
-        <li>Large Televisionman</li>
-        <li>Large SkiToilet (Soon)</li>
-        <li>Large Scientist Kameraman (Soon)</li>
-      </ul>
-    </div>
-
-    <!-- Titan -->
-    <div class="unit-card titan">
-      <h3>Titan <span class="text-gray-500 text-sm">(Mythic)</span></h3>
-      <ul>
-        <li>Titan Kameraman (In Alpha Release)</li>
-        <li>Titan Spikerman (In Alpha Update)</li>
-        <li>Titan Televisionman (In TV Arc Update)</li>
-        <li>Boss G-Toilet</li>
-      </ul>
-    </div>
-
-    <!-- Upgraded Titan -->
-   <div class="unit-card upgraded">
-  <h3>
-    Upgraded Titan <span class="text-gray-500 text-sm">(Godly)</span>
-  </h3>
-  <ul>
-    <li>Upgraded Titan Kameraman (In Upgraded Update Part 1)</li>
-    <li>Upgraded Titan Spikerman (In Upgraded Update Part 2)</li>
-    <li>Upgraded Titan Televisionman (In Upgraded Update Part 3)</li>
-    <li>Superior Boss G-Toilet (In Alpha Hills Update)</li>
-  </ul>
-</div>
-
-
-    <!-- Admin Unit -->
-    <div class="unit-card admin">
-      <h3>Admin Unit <span class="text-gray-500 text-sm">(???)</span></h3>
-      <ul>
-        <li>???</li>
-      </ul>
-    </div>
-  </div>
-
-  <p class="text-sm text-gray-500 italic mt-4">
-    Note: Toilet will release in Astro Arc Update and Scientist Units in Scientist Update, will be added later.
-  </p>
-</section>
-
-
-    <!-- Modes Section - Every 10s skip 1 wave -->
+    <!-- ================= UNITS SECTION ================= -->
     <section>
-      <h2 class="text-2xl font-semibold text-green-400 border-b border-gray-700 pb-2 mb-4">3 New Modes</h2>
-      <ul class="list-disc list-inside text-gray-400 ml-4">
-        <li>Easy Mode - 10 waves (Give 100 Points)</li>
-        <li>Boss Rush - 5 waves (Give 400 Points)</li>
-        <li>Medium Mode - 20 waves (Give 200 Points)</li>
-        <li>Hard Mode - 50 waves (Give 500 Points)</li>
-        <li>Alpha Hill Mode - 60 waves (Give 1000 Points)</li>
-      </ul>
-      <p class="text-sm text-gray-500 italic mt-2">
-        (Alpha Hill Mode will release soon and it will give you 1000 Points but very very Hard)
+      <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
+      <div class="unit-grid">
+        <!-- Normal Agent -->
+        <div class="unit-card normal" onclick="showPopup('Normal Agent', ['Kameraman', 'Spikerman', 'Televisionman', 'SkiToilet'])">
+          <h3>Normal Agent <span class="text-gray-500 text-sm">(Basic Unit)</span></h3>
+          <ul>
+            <li>Kameraman</li>
+            <li>Spikerman</li>
+            <li>TeleVisionman</li>
+            <li>SkiToilet</li>
+          </ul>
+        </div>
+
+        <!-- Special Agent -->
+        <div class="unit-card special" onclick="showPopup('Special Agent', ['Plunger Kameraman', 'Dark Knife Spikerman', 'Daddy Televisionman – Astro Arc (Soon)', 'Scientist SkiToilet', 'Scientist Kameraman', 'Scientist Televisionman', 'Scientist Spikerman'])">
+          <h3>Special Agent <span class="text-gray-500 text-sm">(Rare – Epic)</span></h3>
+        </div>
+
+        <!-- Large Agent -->
+        <div class="unit-card large" onclick="showPopup('Large Agent', ['Large Kameraman', 'Large Spikerman', 'Large Televisionman', 'Large SkiToilet (Soon)', 'Large Scientist Kameraman (Soon)'])">
+          <h3>Large Agent <span class="text-gray-500 text-sm">(Legendary)</span></h3>
+        </div>
+
+        <!-- Titan -->
+        <div class="unit-card titan" onclick="showPopup('Titan', ['Titan Kameraman (In Alpha Release)', 'Titan Spikerman (In Alpha Update)', 'Titan Televisionman (In TV Arc Update)', 'Boss G-Toilet'])">
+          <h3>Titan <span class="text-gray-500 text-sm">(Mythic)</span></h3>
+        </div>
+
+        <!-- Upgraded Titan -->
+        <div class="unit-card upgraded" onclick="showPopup('Upgraded Titan', ['Upgraded Titan Kameraman', 'Upgraded Titan Spikerman', 'Upgraded Titan Televisionman', 'Superior Boss G-Toilet'])">
+          <h3>Upgraded Titan <span class="text-gray-500 text-sm">(Godly)</span></h3>
+        </div>
+
+        <!-- Admin Unit -->
+        <div class="unit-card admin" onclick="showPopup('Admin Unit', ['Cheems_sama Kameraman (SUPER OPPP 360 AOE)'])">
+          <h3>Admin Unit <span class="text-gray-500 text-sm">(???)</span></h3>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 italic mt-4">
+        Note: Toilet will release in Astro Arc Update and Scientist Units in Scientist Update, will be added later.
       </p>
     </section>
 
-    <!-- Partner Section -->
-    <section>
-      <h2 class="text-2xl font-semibold text-pink-400 border-b border-gray-700 pb-2 mb-4">Partner</h2>
-      <ul class="list-disc list-inside text-gray-400 ml-4">
-        <li>Role in Game (Famous In Game) (Soon)</li>
-        <li>Sign Unit (Buff Value) (Soon)</li>
-        <li>Partner Pack- All Unit (Soon)</li>
-        <li>Trading (Testing Script) (Soon)</li>
-      </ul>
-    </section>
-      <!-- DEVS -->
-    <section>
-      <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">DEVS</h2>
-      <ul class="list-disc list-inside text-gray-400 ml-4">
-        <li>Role in Game (Famous In Game) (Soon)</li>
-        <li>Sign Unit (Buff Value) (Soon)</li>
-        <li>Partner Pack- All Unit (Soon)</li>
-        <li>CAN TROLL PLAYER HI HAHAHA</li>
-      </ul>
-    </section>
-    
-    <!-- Robux & Summon -->
-    <section>
-      <h2 class="text-2xl font-semibold text-yellow-300 border-b border-gray-700 pb-2 mb-4">Robux Unit</h2>
-      <p class="text-gray-400 ml-4">???-It's is a Large Agent</p>
-
-      <h2 class="text-2xl font-semibold text-yellow-300 border-b border-gray-700 pb-2 mb-4 mt-6">Summon Unit</h2>
-<p><strong>Cost:</strong></p>
-<ul>
-  <li>100 Points → 1 Summon</li>
-  <li>900 Points → 10 Summons</li>
-  <li>1800 Points → 20 Summons</li>
-</ul>
-
-<p><strong>Summon Rate:</strong></p>
-<ul>
-  <li>Normal Agents — 70.898999%</li>
-  <li>Special Agents — 28%</li>
-  <li>Large Agents — 1%</li>
-  <li>Titans — 0.01%</li>
-  <li>Upgraded Titans — 0.000001%</li>
-</ul>
-<!-- ⚔️ DPS UNIT SECTION -->
-<hr>
-<h2 style="color: #00ffff; text-align:center;">⚔️ DPS Unit</h2>
-
-<div class="unit-grid">
+    <!-- ================= DPS UNITS ================= -->
+    <hr class="border-gray-700 my-10">
+    <h2 class="dps-title">⚔️ DPS Unit</h2>
+    <!-- (Giữ nguyên phần DPS Unit của bạn ở đây) -->
+    <div class="unit-grid">
 
   <!-- NORMAL AGENT -->
   <div class="unit-card normal">
@@ -334,98 +240,129 @@
 <p style="text-align:center; font-style: italic; margin-top: 15px;">
   *DPS (Damage per Second)
 </p>
+    <!-- ================= SUMMON SIMULATOR ================= -->
+    <section class="text-center mt-16">
+      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">🎲 Summon Simulator</h2>
+      <p class="text-gray-400 mb-3">Try your luck and summon Units based on actual rates!</p>
 
-<style>
-/* ⚔️ DPS Unit title animation */
-.dps-title {
-  color: #00ffff;
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-  animation: glowPulse 2s infinite alternate;
-}
+      <div class="space-x-4 mb-4">
+        <button onclick="summon(1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-xl">Summon 1</button>
+        <button onclick="summon(10)" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-xl">Summon 10</button>
+      </div>
 
-@keyframes glowPulse {
-  from { text-shadow: 0 0 10px #00ffff; }
-  to { text-shadow: 0 0 25px #00ffff, 0 0 50px cyan; }
-}
-
-/* Layout Grid */
-.unit-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* Unit Card Base */
-.unit-card {
-  background: #0a0a0a;
-  color: #fff;
-  border: 2px solid #00ffff;
-  border-radius: 14px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-
-.unit-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-}
-
-/* Title inside card */
-.unit-card h3 {
-  margin-bottom: 10px;
-  color: #00ffff;
-  text-shadow: 0 0 8px #00ffff;
-}
-
-/* Card Text */
-.unit-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 5px 0 15px 0;
-  text-align: left;
-  font-size: 14px;
-}
-
-.unit-card ul li {
-  padding: 2px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Rarity Colors */
-.normal { border-color: #00ffff; }
-.special { border-color: gold; box-shadow: 0 0 10px gold; }
-.large { border-color: lime; box-shadow: 0 0 10px lime; }
-.titan { border-color: red; box-shadow: 0 0 15px red; }
-.upgraded { border-color: #007bff; box-shadow: 0 0 15px #007bff; }
-.upgraded h3 { color: #007bff; text-shadow: 0 0 10px #007bff; }
-
-/* ADMIN UNIT - Đen phát sáng tím */
-.admin {
-  border-color: #6f00ff;
-  background: linear-gradient(145deg, #000000, #111);
-  box-shadow: 0 0 20px #6f00ff, inset 0 0 20px #6f00ff;
-  animation: adminPulse 3s infinite alternate;
-}
-
-.admin h3 {
-  color: #b366ff;
-  text-shadow: 0 0 15px #b366ff;
-}
-
-@keyframes adminPulse {
-  from { box-shadow: 0 0 20px #6f00ff, inset 0 0 10px #6f00ff; }
-  to { box-shadow: 0 0 40px #b366ff, inset 0 0 25px #b366ff; }
-}
-</style>
-
-<p><strong>Note:</strong> Robux Unit is a Large Agent (cannot be obtained from summon, only through buying or crafting). It will be released soon.</p>
-    </footer>
+      <div id="summon-result" class="text-cyan-400 text-lg font-semibold mt-4"></div>
+    </section>
   </div>
+
+  <!-- ================= POPUP ================= -->
+  <div id="popup" class="fixed inset-0 bg-black/70 hidden items-center justify-center">
+    <div class="bg-gray-900 border border-cyan-400 rounded-2xl p-6 max-w-md text-center shadow-[0_0_30px_cyan]">
+      <h3 id="popup-title" class="text-2xl font-bold mb-2 text-cyan-300"></h3>
+      <ul id="popup-list" class="text-left list-disc list-inside text-gray-300 mb-4"></ul>
+      <button onclick="closePopup()" class="mt-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl">Close</button>
+    </div>
+  </div>
+
+  <!-- ================= STYLES ================= -->
+  <style>
+    .unit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .unit-card {
+      background: #0a0a0a;
+      color: #fff;
+      border: 2px solid #00ffff;
+      border-radius: 14px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .unit-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+    }
+
+    .normal { border-color: #00ffff; }
+    .special { border-color: gold; box-shadow: 0 0 15px gold; }
+    .large { border-color: lime; box-shadow: 0 0 15px lime; }
+    .titan { border-color: red; box-shadow: 0 0 15px red; }
+    .upgraded { border-color: #007bff; box-shadow: 0 0 15px #007bff; }
+    .admin {
+      border-color: #6f00ff;
+      background: linear-gradient(145deg, #000000, #111);
+      box-shadow: 0 0 20px #6f00ff, inset 0 0 20px #6f00ff;
+      animation: adminPulse 3s infinite alternate;
+    }
+
+    @keyframes adminPulse {
+      from { box-shadow: 0 0 20px #6f00ff, inset 0 0 10px #6f00ff; }
+      to { box-shadow: 0 0 40px #b366ff, inset 0 0 25px #b366ff; }
+    }
+
+    .dps-title {
+      color: #00ffff;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px #00ffff; }
+      to { text-shadow: 0 0 25px #00ffff, 0 0 50px cyan; }
+    }
+  </style>
+
+  <!-- ================= SCRIPT ================= -->
+  <script>
+    // 📦 Popup function
+    function showPopup(title, units) {
+      document.getElementById('popup-title').textContent = title;
+      const list = document.getElementById('popup-list');
+      list.innerHTML = '';
+      units.forEach(u => {
+        const li = document.createElement('li');
+        li.textContent = u;
+        list.appendChild(li);
+      });
+      document.getElementById('popup').classList.remove('hidden');
+      document.getElementById('popup').classList.add('flex');
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.add('hidden');
+      document.getElementById('popup').classList.remove('flex');
+    }
+
+    // 🎲 Summon Simulator
+    const summonRates = [
+      { name: 'Normal Agent', rate: 70.898999 },
+      { name: 'Special Agent', rate: 28 },
+      { name: 'Large Agent', rate: 1 },
+      { name: 'Titan', rate: 0.01 },
+      { name: 'Upgraded Titan', rate: 0.000001 }
+    ];
+
+    function summon(times) {
+      let results = [];
+      for (let i = 0; i < times; i++) {
+        let roll = Math.random() * 100;
+        let total = 0;
+        for (let unit of summonRates) {
+          total += unit.rate;
+          if (roll <= total) {
+            results.push(unit.name);
+            break;
+          }
+        }
+      }
+      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+    }
+  </script>
 </body>
 </html>
