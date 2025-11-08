@@ -506,8 +506,8 @@
       document.getElementById('popup').classList.remove('flex');
     }
 
-    // 🎲 Summon Simulator
-  const summonRates = [
+   // 🎲 Summon Simulator
+const summonRates = [
   { name: 'Kameraman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
   { name: 'Spikerman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
   { name: 'Televsionman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
@@ -532,6 +532,7 @@
 
 let pointsSpent = 0;
 
+// Hàm summon 1 unit (tăng count & pointsSpent)
 function summonUnit() {
   const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
   let rand = Math.random() * totalRate;
@@ -539,7 +540,7 @@ function summonUnit() {
   for (let unit of summonRates) {
     if (rand < unit.rate) {
       unit.count++;
-      pointsSpent += 100; // tính points đã tiêu (vẫn giữ record)
+      pointsSpent += 100; // tăng points spent
       return unit;
     }
     rand -= unit.rate;
@@ -547,17 +548,26 @@ function summonUnit() {
   return null;
 }
 
-// summon nhiều lần
+// Hàm summon nhiều lần
 function summon(times) {
   const results = [];
   for (let i = 0; i < times; i++) {
     const unit = summonUnit();
-    if (unit) results.push(unit);
+    if (unit) results.push(unit.name);
   }
-  return results;
+
+  // hiển thị kết quả
+  const resultElement = document.getElementById('summon-result');
+  if (resultElement) {
+    resultElement.innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+  }
+
+  // cập nhật card (nếu có container)
+  const container = document.getElementById('cardsContainer');
+  if (container) renderCards(container);
 }
 
-// render card (có thể gắn vô GUI Roblox sau)
+// Hàm render card theo rarity
 function renderCards(container) {
   container.innerHTML = '';
 
@@ -571,7 +581,7 @@ function renderCards(container) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<strong>${rarity}</strong> - Total Units: ${rarities[rarity].reduce((s,u)=>s+u.count,0)}`;
-    
+
     const list = document.createElement('ul');
     list.className = 'unit-list';
     rarities[rarity].forEach(unit => {
@@ -589,27 +599,6 @@ function renderCards(container) {
   }
 }
 
-
-
-function summon(times) {
-  const results = [];
-  for (let i = 0; i < times; i++) {
-    const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
-    let rand = Math.random() * totalRate;
-
-    for (let unit of summonRates) {
-      if (rand < unit.rate) {
-        unit.count++;        // tăng bộ đếm unit
-        pointsSpent += 100;  // tính points đã tiêu
-        results.push(unit.name); // lưu kết quả summon
-        break;
-      }
-      rand -= unit.rate;
-    }
-  }
-  document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-  renderCards(document.getElementById('cardsContainer'));
-}
   </script>
 </body>
 </html>
