@@ -59,187 +59,226 @@
       </p>
     </section>
 
-    <!-- ================= DPS UNITS ================= -->
-    <hr class="border-gray-700 my-10">
-    <h2 class="dps-title">⚔️ DPS Unit</h2>
-    <!-- (Giữ nguyên phần DPS Unit của bạn ở đây) -->
-    <div class="unit-grid">
+  <!-- ================== DPS UNITS ================== -->
+<section>
+  <h2 class="text-2xl font-semibold text-cyan-400 border-b border-gray-700 pb-2 mb-4">⚔️ DPS Units</h2>
 
-  <!-- NORMAL AGENT -->
-  <div class="unit-card normal">
-    <h3>Normal Agent</h3>
-    <p><strong>Kameraman</strong></p>
-    <ul>
-      <li>Damage: 5 → 20</li>
-      <li>Cooldown: 1s</li>
-      <li>DPS: 5 → 20</li>
-      <li>Range: 5 → 10</li>
-    </ul>
+  <div class="unit-grid">
 
-    <p><strong>Spikerman</strong></p>
-    <ul>
-      <li>Damage: 7 → 25</li>
-      <li>Cooldown: 1s</li>
-      <li>DPS: 25</li>
-      <li>Range: 5 → 10</li>
-    </ul>
+    <!-- NORMAL AGENT -->
+    <div class="unit-card normal" onclick="toggleUnit(this)">
+      <h3>Normal Agent</h3>
+      <div class="unit-info hidden">
+        <p><strong>Kameraman</strong></p>
+        <ul>
+          <li>Damage: 5 → 20</li>
+          <li>Cooldown: 1s</li>
+          <li>DPS: 5 → 20</li>
+          <li>Range: 5 → 10</li>
+        </ul>
 
-    <p><strong>TelevisionMan (AOE)</strong></p>
-    <ul>
-      <li>Damage: 5 → 15</li>
-      <li>Cooldown: 0.5s</li>
-      <li>DPS: 10 → 30</li>
-      <li>Range: 10 → 25</li>
-    </ul>
+        <p><strong>Spikerman</strong></p>
+        <ul>
+          <li>Damage: 7 → 25</li>
+          <li>Cooldown: 1s</li>
+          <li>DPS: 25</li>
+          <li>Range: 5 → 10</li>
+        </ul>
+
+        <p><strong>TelevisionMan (AOE)</strong></p>
+        <ul>
+          <li>Damage: 5 → 15</li>
+          <li>Cooldown: 0.5s</li>
+          <li>DPS: 10 → 30</li>
+          <li>Range: 10 → 25</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SPECIAL AGENT -->
+    <div class="unit-card special" onclick="toggleUnit(this)">
+      <h3>Special Agent</h3>
+      <div class="unit-info hidden">
+        <p><strong>Plunger Kameraman</strong></p>
+        <ul>
+          <li>Damage: 10 → 40</li>
+          <li>Cooldown: 0.5s</li>
+          <li>DPS: 20 → 80</li>
+          <li>Range: 15 → 40</li>
+        </ul>
+
+        <p><strong>Dark Knife Spikerman (Splash)</strong></p>
+        <ul>
+          <li>Damage: 50 → 50</li>
+          <li>Cooldown: 2 → 0.5s</li>
+          <li>DPS: 25 → 100</li>
+          <li>Range: 10 → 25</li>
+        </ul>
+
+        <p><strong>Daddy Televisionman (2 Circle AOE)</strong></p>
+        <ul>
+          <li>Damage: 20 → 24</li>
+          <li>Cooldown: 1 → 0.2s</li>
+          <li>DPS: 20 → 120</li>
+          <li>Range: 20 → 50</li>
+          <li>Damge:100->150</li>
+          <li>Cooldown:5->3</li>
+          <li>DPS: 20->50</li>
+          <li>Range: 10->20</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LARGE AGENT -->
+    <div class="unit-card large" onclick="toggleUnit(this)">
+      <h3>Large Agent</h3>
+      <div class="unit-info hidden">
+        <p><strong>Large Kameraman</strong></p>
+        <ul>
+          <li>Damage: 20 → 60</li>
+          <li>Cooldown: 1 → 0.2s</li>
+          <li>DPS: 20 → 300</li>
+          <li>Range: 10 → 25</li>
+        </ul>
+
+        <p><strong>Large Spikerman</strong></p>
+        <ul>
+          <li>Damage: 100 → 200</li>
+          <li>Cooldown: 1 → 0.4s</li>
+          <li>DPS: 100 → 500</li>
+          <li>Range: 15 → 40</li>
+        </ul>
+
+        <p><strong>Large Televisionman (AOE)</strong></p>
+        <ul>
+          <li>Damage: 25 → 30</li>
+          <li>Cooldown: 0.5 → 0.1s</li>
+          <li>DPS: 50 → 300</li>
+          <li>Range: 25 → 60</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TITAN -->
+    <div class="unit-card titan" onclick="toggleUnit(this)">
+      <h3>Titan</h3>
+      <div class="unit-info hidden">
+        <p><strong>Titan Kameraman (3 Circle, Smallest = 180 AOE)</strong></p>
+        <ul>
+          <li>Damage: 25 → 50</li>
+          <li>Cooldown: 1 → 0.2s</li>
+          <li>DPS: 25 → 250</li>
+          <li>Range: 40 → 75</li>
+          <li>Damage: 200 → 500</li>
+          <li>Cooldown: 5 → 2s</li>
+          <li>DPS: 60 → 250</li>
+          <li>Range: 20 → 45</li>
+          <li>Damage: 1000 → 2000</li>
+          <li>Cooldown: 10 → 5s</li>
+          <li>DPS: 100 → 400</li>
+          <li>Range: 10 → 30</li>
+        </ul>
+
+        <p><strong>Titan Spikerman (2 Circle, Largest is splash, Smallest = 90 AOE)</strong></p>
+        <ul>
+          <li>Damage: 200 → 8000</li>
+          <li>Cooldown: 10 → 5s</li>
+          <li>DPS: 20 → 1600</li>
+          <li>Range: 55 → 100</li>
+          <li>Damage: 12 → 50</li>
+          <li>Cooldown: 0.5 → 0.2s</li>
+          <li>DPS: 24 → 250</li>
+          <li>Range: 10 → 35</li>
+        </ul>
+
+        <p><strong>Titan Televisionman (2 Circle, Largest = 200 AOE)</strong></p>
+        <ul>
+          <li>Damage: 50 → 150</li>
+          <li>Cooldown: 0.5 → 0.2s</li>
+          <li>DPS: 100 → 750</li>
+          <li>Range: 35 → 70</li>
+          <li>Damage: 1000 → 9000</li>
+          <li>Cooldown: 5 → 2s</li>
+          <li>DPS: 200 → 4500</li>
+          <li>Range: 10 → 30</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- UPGRADED TITAN -->
+    <div class="unit-card upgraded" onclick="toggleUnit(this)">
+      <h3>Upgraded Titan</h3>
+      <div class="unit-info hidden">
+        <p><strong>Upgraded Titan Kameraman (4 Circle,Second largest = Splash , Smallest = 180 AOE)</strong></p>
+        <ul>
+          <li>Damage: 200 → 150</li>
+          <li>Cooldown: 1 → 0.2s</li>
+          <li>DPS: 200 → 750</li>
+          <li>Range: 50 → 120</li>
+          <li>Damage: 1200 → 10000</li>
+          <li>Cooldown: 5 → 2s</li>
+          <li>DPS: 240 → 5000</li>
+          <li>Range: 40 → 70</li>
+          <li>Damage: 1000 → 20000</li>
+          <li>Cooldown: 10 → 5s</li>
+          <li>DPS: 100 → 4000</li>
+          <li>Range: 20 → 45</li>
+          <li>Damage: 10 → 200</li>
+          <li>Cooldown: 0.1 → 0.1s</li>
+          <li>DPS: 100 → 200</li>
+          <li>Range: 15 → 35</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ADMIN UNIT -->
+    <div class="unit-card admin" onclick="toggleUnit(this)">
+      <h3>Admin Unit</h3>
+      <div class="unit-info hidden">
+        <p><strong>Cheems_sama Kameraman (SUPERRRRR OPPPPPPP ,360 AOE)</strong></p>
+        <ul>
+          <li>Damage: ∞</li>
+          <li>Cooldown: 0.000000000001s</li>
+          <li>DPS: ∞</li>
+          <li>Range: ∞</li>
+          <li>Effect: Delete any enemy instantly 😈</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
-  <!-- SPECIAL AGENT -->
-  <div class="unit-card special">
-    <h3>Special Agent</h3>
+  <p style="text-align:center; font-style: italic; margin-top: 15px;">*DPS (Damage per Second)</p>
+</section>
 
-    <p><strong>Plunger Kameraman</strong></p>
-    <ul>
-      <li>Damage: 10 → 40</li>
-      <li>Cooldown: 0.5s</li>
-      <li>DPS: 20 → 80</li>
-      <li>Range: 15 → 40</li>
-    </ul>
+<style>
+  .unit-card {
+    background: #0a0a0a;
+    border: 2px solid cyan;
+    border-radius: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .unit-card:hover {
+    transform: scale(1.03);
+  }
+  .unit-info {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
 
-    <p><strong>Dark Knife Spikerman (Splash)</strong></p>
-    <ul>
-      <li>Damage: 50 → 50</li>
-      <li>Cooldown: 2 → 0.5s</li>
-      <li>DPS: 25 → 100</li>
-      <li>Range: 10 → 25</li>
-    </ul>
+<script>
+  function toggleUnit(card) {
+    const info = card.querySelector('.unit-info');
+    info.classList.toggle('hidden');
+  }
+</script>
 
-    <p><strong>Daddy Televisionman (2 Circle AOE)</strong></p>
-    <ul>
-      <li>Damage: 20 → 24</li>
-      <li>Cooldown: 1 → 0.2s</li>
-      <li>DPS: 20 → 120</li>
-      <li>Range: 20 → 50</li>
-     <li>Damge:100->150</li>
-      <li>Cooldown:5->3</li>
-      <li>DPS: 20->50</li> 
-      <li>Range: 10->20</li>
-    </ul>
-  </div>
-
-  <!-- LARGE AGENT -->
-  <div class="unit-card large">
-    <h3>Large Agent</h3>
-
-    <p><strong>Large Kameraman</strong></p>
-    <ul>
-      <li>Damage: 20 → 60</li>
-      <li>Cooldown: 1 → 0.2s</li>
-      <li>DPS: 20 → 300</li>
-      <li>Range: 10 → 25</li>
-    </ul>
-
-    <p><strong>Large Spikerman</strong></p>
-    <ul>
-      <li>Damage: 100 → 200</li>
-      <li>Cooldown: 1 → 0.4s</li>
-      <li>DPS: 100 → 500</li>
-      <li>Range: 15 → 40</li>
-    </ul>
-
-    <p><strong>Large Televisionman (AOE)</strong></p>
-    <ul>
-      <li>Damage: 25 → 30</li>
-      <li>Cooldown: 0.5 → 0.1s</li>
-      <li>DPS: 50 → 300</li>
-      <li>Range: 25 → 60</li>
-    </ul>
-  </div>
-
-  <!-- TITAN -->
-  <div class="unit-card titan">
-    <h3>Titan</h3>
-
-    <p><strong>Titan Kameraman (3 Circle, Smallest = 180 AOE)</strong></p>
-    <ul>
-      <li>Damage: 25 → 50</li>
-      <li>Cooldown: 1 → 0.2s</li>
-      <li>DPS: 25 → 250</li>
-      <li>Range: 40 → 75</li>
-      <li>Damage: 200 → 500</li>
-      <li>Cooldown: 5 → 2s</li>
-      <li>DPS: 60 → 250</li>
-      <li>Range: 20 → 45</li>
-      <li>Damage: 1000 → 2000</li>
-      <li>Cooldown: 10 → 5s</li>
-      <li>DPS: 100 → 400</li>
-      <li>Range: 10 → 30</li>
-    </ul>
-    <p><strong>Titan Spikerman (2 Circle,Largest is splash, Smallest = 90 AOE)</strong></p>
-    <ul>
-      <li>Damage: 200 → 8000</li>
-      <li>Cooldown: 10 → 5s</li>
-      <li>DPS: 20 → 1600</li>
-      <li>Range: 55 → 100</li>
-      <li>Damage: 12 → 50</li>
-      <li>Cooldown: 0.5 → 0.2s</li>
-      <li>DPS: 24 → 250</li>
-      <li>Range: 10 → 35</li>
-    </ul>
-    <p><strong>Titan Televisionman (2 Circle, Largest = 200 AOE)</strong></p>
-    <ul>
-      <li>Damage: 50 → 150</li>
-      <li>Cooldown: 0.5 → 0.2s</li>
-      <li>DPS: 100 → 750</li>
-      <li>Range: 35 → 70</li>
-      <li>Damage: 1000 → 9000</li>
-      <li>Cooldown: 5 → 2s</li>
-      <li>DPS: 200 → 4500</li>
-      <li>Range: 10 → 30</li>
-    </ul>
-  </div>
-
- <!-- UPGRADED TITAN -->
-  <div class="unit-card upgraded">
-    <h3>Upgraded Titan</h3>
-    <p><strong>Upgraded Titan Kameraman (4 Circle,Second largest = Splash , Smallest = 180 AOE)</strong></p>
-    <ul>
-      <li>Damage: 200 → 150</li>
-      <li>Cooldown: 1 → 0.2s</li>
-      <li>DPS: 200 → 750</li>
-      <li>Range: 50 → 120</li>
-      <li>Damage: 1200 → 10000</li>
-      <li>Cooldown: 5 → 2s</li>
-      <li>DPS: 240 → 5000</li>
-      <li>Range: 40 → 70</li>
-      <li>Damage: 1000 → 20000</li>
-      <li>Cooldown: 10 → 5s</li>
-      <li>DPS: 100 → 4000</li>
-      <li>Range: 20 → 45</li>
-      <li>Damage: 10 → 200</li>
-      <li>Cooldown: 0.1 → 0.1s</li>
-      <li>DPS: 100 → 200</li>
-      <li>Range: 15 → 35</li>
-    </ul>
-  </div>
-
-<!-- 🕶️ ADMIN UNIT -->
-  <div class="unit-card admin">
-    <h3>Admin Unit</h3>
-    <p><strong>Cheems_sama Kameraman(SUPERRRRR OPPPPPPP ,360 AOE)</strong></p>
-    <ul>
-      <li>Damage: ∞</li>
-      <li>Cooldown: 0.000000000001s</li>
-      <li>DPS: ∞</li>
-      <li>Range: ∞</li>
-      <li>Effect: Delete any enemy instantly 😈</li>
-    </ul>
-  </div>
-
-</div>
-
-<p style="text-align:center; font-style: italic; margin-top: 15px;">
-  *DPS (Damage per Second)
-</p>
     <!-- ================= SUMMON SIMULATOR ================= -->
     <section class="text-center mt-16">
       <h2 class="text-2xl font-semibold text-yellow-300 mb-4">🎲 Summon Simulator</h2>
