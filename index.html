@@ -611,6 +611,57 @@
     document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
   }
 </script>
+<script>
+// 🧮 Summon Counter System (Độc lập nhưng theo dõi summon chính)
+let summonCountData = JSON.parse(localStorage.getItem('summonCountData')) || {};
+let totalSummons = JSON.parse(localStorage.getItem('totalSummons')) || 0;
+
+// 🔹 Hàm lưu dữ liệu
+function saveSummonData() {
+  localStorage.setItem('summonCountData', JSON.stringify(summonCountData));
+  localStorage.setItem('totalSummons', JSON.stringify(totalSummons));
+}
+
+// 🔹 Hàm đếm mỗi khi summon xong
+function addSummonResult(unitName) {
+  if (!summonCountData[unitName]) summonCountData[unitName] = 0;
+  summonCountData[unitName]++;
+  totalSummons++;
+  saveSummonData();
+}
+
+// 🔹 Gọi hàm này sau khi summon trong script lớn của cậu
+// Ví dụ trong script summon chính có chỗ:
+//    results.push(unit.name);
+// Thì thêm dòng: addSummonResult(unit.name);
+
+// 🔹 Hiển thị card Summoned Units
+function renderSummonCard() {
+  const container = document.getElementById('summoned-units-card');
+  container.innerHTML = `
+    <div class="card bg-gray-800 text-white p-4 rounded-xl shadow-md">
+      <h3 class="text-lg font-semibold mb-2">📦 Summoned Units</h3>
+      <p class="text-sm mb-2">Total Summons: ${totalSummons}</p>
+      <button id="toggleSummonedList" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mb-3">Show / Hide List</button>
+      <ul id="summonedList" class="hidden list-disc ml-4"></ul>
+    </div>
+  `;
+
+  const list = document.getElementById('summonedList');
+  Object.entries(summonCountData).forEach(([unit, count]) => {
+    const li = document.createElement('li');
+    li.textContent = `${unit}: ${count}`;
+    list.appendChild(li);
+  });
+
+  document.getElementById('toggleSummonedList').addEventListener('click', () => {
+    list.classList.toggle('hidden');
+  });
+}
+
+// 🔹 Tự động hiển thị khi mở web
+document.addEventListener('DOMContentLoaded', renderSummonCard);
+</script>
 
 </body>
 </html>
