@@ -543,16 +543,6 @@
       document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
     }
  </script>   
-<!-- ====== REPLACE PREVIOUS SUMMON + MODULE WITH THIS SINGLE BLOCK ====== -->
-/* ===== Summon + Summon Counter Module (single safe script) =====
-   - Không cần sửa script khác
-   - Không có <script> nested
-   - Định nghĩa summon(...) duy nhất (overwrites previous)
-   - Gọi window.sc_recordSummon(...) để ghi vào counter (module nằm bên dưới)
-   - Module lưu counts vào localStorage và tạo card popup
-*/
-
-// ---- Summon rates (kept simple per rarity as in your file) ----
    const summonRates = [
   { name: 'Kameraman', rate: 70.898999/4 },
   { name: 'Spikerman', rate: 70.898999/4 },
@@ -576,7 +566,6 @@
   { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
 ];
 
-// ---- Summon function (single, authoritative) ----
 function summon(times) {
   const results = [];
   for (let i = 0; i < times; i++) {
@@ -661,7 +650,6 @@ function sc_waitForResultElement(timeout = 3000) {
   });
 }
 
-/* ===== UI: small Summoned Unit card + modal ===== */
 function sc_createCardUI() {
   if (document.getElementById(SC_CARD_ID)) return;
   const card = document.createElement('div');
