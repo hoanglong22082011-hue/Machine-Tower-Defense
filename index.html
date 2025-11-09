@@ -543,6 +543,61 @@
       document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
     }
 </script>
+<!-- 🧮 Summoned Units Counter -->
+<div class="text-center mt-8">
+  <button onclick="showSummonedUnits()" 
+          class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-xl">
+    📦 View Summoned Units
+  </button>
+  <div id="summoned-units-card" 
+       class="mt-4 p-4 bg-gray-900 border border-purple-500 rounded-xl hidden max-w-md mx-auto text-left">
+    <h3 class="text-xl font-bold text-purple-400 mb-2">Summoned Units</h3>
+    <ul id="summoned-list" class="list-disc list-inside text-gray-300"></ul>
+  </div>
+</div>
+
+<script>
+  // 🧾 Lưu và hiển thị bộ đếm
+  let summonCount = JSON.parse(localStorage.getItem('summonCount')) || {};
+
+  // Gốc summon cũ
+  const originalSummon = summon;
+
+  // Gói lại để tự động cộng dồn
+  summon = function(times) {
+    originalSummon(times);
+    const results = document.getElementById('summon-result').textContent
+      .replace('🎁 You got:', '')
+      .trim()
+      .split(', ')
+      .filter(Boolean);
+
+    results.forEach(unit => {
+      summonCount[unit] = (summonCount[unit] || 0) + 1;
+    });
+
+    localStorage.setItem('summonCount', JSON.stringify(summonCount));
+  };
+
+  // Hiển thị danh sách summon
+  function showSummonedUnits() {
+    const card = document.getElementById('summoned-units-card');
+    const list = document.getElementById('summoned-list');
+    list.innerHTML = '';
+
+    if (Object.keys(summonCount).length === 0) {
+      list.innerHTML = '<li>No units summoned yet.</li>';
+    } else {
+      for (const [unit, count] of Object.entries(summonCount)) {
+        const li = document.createElement('li');
+        li.textContent = `${unit}: ${count}`;
+        list.appendChild(li);
+      }
+    }
+
+    card.classList.toggle('hidden');
+  }
+</script>
 
 </body>
 </html>
