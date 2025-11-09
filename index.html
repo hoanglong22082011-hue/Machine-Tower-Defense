@@ -542,7 +542,7 @@
       }
       document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
     }
-    
+ </script>   
 <!-- ====== REPLACE PREVIOUS SUMMON + MODULE WITH THIS SINGLE BLOCK ====== -->
 /* ===== Summon + Summon Counter Module (single safe script) =====
    - Không cần sửa script khác
@@ -599,7 +599,6 @@ function summon(times) {
   if (el) el.innerHTML = `🎁 You got:<br>${results.join(', ')}`;
   return results;
 }
-
 /* ================= Summon Counter Module (standalone) ================= */
 const SC_STORAGE_KEY = 'mtd_summon_counts_v1';
 const SC_OBSERVER_ID = 'summon-result';
@@ -736,6 +735,7 @@ function sc_renderModalList() {
 window.sc_recordSummon = sc_recordSummon;
 window.sc_getCounts = ()=>({ ...sc_counts });
 window.sc_resetCounts = ()=>{ sc_counts={}; sc_saveCounts(sc_counts); sc_renderCard(); };
+</script>
 </script>
 </body>
 </html>
