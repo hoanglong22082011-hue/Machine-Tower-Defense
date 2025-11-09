@@ -13,7 +13,46 @@
       <h1 class="text-4xl font-bold text-white mb-2">Machine Tower Defense</h1>
       <p class="text-gray-400 italic">Alpha Release</p>
     </header>
+  // 🎲 Summon Simulator
+   const summonRates = [
+  { name: 'Kameraman', rate: 70.898999/4 },
+  { name: 'Spikerman', rate: 70.898999/4 },
+  { name: 'Televsionman', rate: 70.898999/4 },
+  { name: 'SkiToilet', rate: 70.898999/4 },
+  { name: 'Plunger Kameraman', rate: 28/7 },
+  { name: 'Dark Knife Spikerman', rate: 28/7 },
+  { name: 'Scientist Spikerman', rate: 28/7 },
+  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7 },
+  { name: 'Scientist SkiToilet', rate: 28/7 },
+  { name: 'Scientist Kameraman', rate: 28/7 },
+  { name: 'Scientist Televisionman', rate: 28/7 },
+  { name: 'Large Kameraman', rate: 1/5 },
+  { name: 'Large Spikerman', rate: 1/5 },
+  { name: 'Large Televisionman', rate: 1/5 },
+  { name: 'Large Scientist Kameraman', rate: 1/5 },
+  { name: 'Large SkiToilet', rate: 1/5 },
+  { name: 'Titan Kameraman', rate: 0.01/3 },
+  { name: 'Titan Spikerman', rate: 0.01/3 },
+  { name: 'Titan Televsionman', rate: 0.01/3 },
+  { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
+];
 
+
+    function summon(times) {
+      let results = [];
+      for (let i = 0; i < times; i++) {
+        let roll = Math.random() * 100;
+        let total = 0;
+        for (let unit of summonRates) {
+          total += unit.rate;
+          if (roll <= total) {
+            results.push(unit.name);
+            break;
+          }
+        }
+      }
+      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+    }
     <!-- ================= UNITS SECTION ================= -->
     <section>
       <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
@@ -505,280 +544,6 @@
       document.getElementById('popup').classList.add('hidden');
       document.getElementById('popup').classList.remove('flex');
     }
-
-    // 🎲 Summon Simulator
-    const summonRates = [
-      { name: 'Normal Agent', rate: 70.898999 },
-      { name: 'Special Agent', rate: 28 },
-      { name: 'Large Agent', rate: 1 },
-      { name: 'Titan', rate: 0.01 },
-      { name: 'Upgraded Titan', rate: 0.000001 }
-    ];
-
-    function summon(times) {
-      let results = [];
-      for (let i = 0; i < times; i++) {
-        let roll = Math.random() * 100;
-        let total = 0;
-        for (let unit of summonRates) {
-          total += unit.rate;
-          if (roll <= total) {
-            results.push(unit.name);
-            break;
-          }
-        }
-      }
-      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-    }
-    
-/* === Summon Counter Module (standalone) ===
-   - Tự động bắt kết quả từ #summon-result nếu có (không sửa script cũ)
-   - Có API recordSummon(name) để gọi thủ công nếu muốn
-   - Lưu counts vào localStorage => tồn tại qua lần next visit
-   - Tạo card "Summoned Unit" cạnh trang, click mở popup hiển thị counts
-*/
-
-// config
-const SC_STORAGE_KEY = 'mtd_summon_counts_v1';
-const SC_OBSERVER_ID = 'summon-result'; // id nơi script cũ in kết quả
-const SC_CARD_ID = 'sc-summoned-card';
-
-// load or init
-function sc_loadCounts() {
-  try {
-    const raw = localStorage.getItem(SC_STORAGE_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch(e) {
-    console.error('sc: loadCounts error', e);
-    return {};
-  }
-}
-function sc_saveCounts(counts) {
-  try {
-    localStorage.setItem(SC_STORAGE_KEY, JSON.stringify(counts));
-  } catch(e) {
-    console.error('sc: saveCounts error', e);
-  }
-}
-let sc_counts = sc_loadCounts();
-
-// API: record 1 summon by name
-function sc_recordSummon(name) {
-  if (!name) return;
-  sc_counts[name] = (sc_counts[name] || 0) + 1;
-  sc_saveCounts(sc_counts);
-  sc_renderCard(); // cập nhật UI ngay
-}
-
-// helper: parse text like "You got: A, B, C" -> [A,B,C]
-function sc_parseNamesFromText(text) {
-  if (!text) return [];
-  // remove HTML tags then split on commas/newlines
-  const tmp = text.replace(/<[^>]*>/g,'').trim();
-  // thường kết quả là "🎁 You got:\nA, B, C" hoặc "A, B"
-  // tìm phần sau "You got" nếu có
-  const idx = tmp.indexOf('You got:');
-  const payload = idx !== -1 ? tmp.slice(idx + 'You got:'.length) : tmp;
-  // split by comma or line breaks
-  return payload.split(/[\n,]+/)
-    .map(s => s.trim())
-    .filter(s => s.length > 0);
-}
-
-// Auto-observer: watch #summon-result mutations and record any names found
-function sc_setupObserver() {
-  const el = document.getElementById(SC_OBSERVER_ID);
-  if (!el) return false;
-  const obs = new MutationObserver(function(muts){
-    muts.forEach(m => {
-      // when children or text changes, parse content
-      const text = el.innerHTML || el.textContent || '';
-      const names = sc_parseNamesFromText(text);
-      names.forEach(n => {
-        // if name already appeared in last saved state for this run, we still record — dedupe could be added but keep simple
-        sc_recordSummon(n);
-      });
-    });
-  });
-  obs.observe(el, { childList: true, subtree: true, characterData: true });
-  // save observer reference to window so we can disconnect if needed
-  window._sc_observer = obs;
-  return true;
-}
-
-// If #summon-result not present at load, try later (page may render it later)
-function sc_waitForResultElement(timeout = 3000) {
-  return new Promise(resolve => {
-    const el = document.getElementById(SC_OBSERVER_ID);
-    if (el) { resolve(true); return; }
-    const start = Date.now();
-    const t = setInterval(() => {
-      const e = document.getElementById(SC_OBSERVER_ID);
-      if (e) { clearInterval(t); resolve(true); return; }
-      if (Date.now() - start > timeout) { clearInterval(t); resolve(false); }
-    }, 200);
-  });
-}
-
-/* UI: Summoned Unit card & popup
-   - creates a small card appended to body bottom-right
-   - click => show modal with list of units+counts, plus Reset button
-*/
-function sc_createCardUI() {
-  if (document.getElementById(SC_CARD_ID)) return;
-  const card = document.createElement('div');
-  card.id = SC_CARD_ID;
-  card.style.position = 'fixed';
-  card.style.right = '20px';
-  card.style.bottom = '20px';
-  card.style.zIndex = '9999';
-  card.style.background = 'linear-gradient(135deg,#0f172a, #021028)';
-  card.style.color = '#fff';
-  card.style.padding = '10px 14px';
-  card.style.borderRadius = '12px';
-  card.style.boxShadow = '0 6px 20px rgba(0,0,0,0.6)';
-  card.style.border = '1px solid rgba(255,255,255,0.06)';
-  card.style.cursor = 'pointer';
-  card.style.fontFamily = 'Inter, Arial, sans-serif';
-  card.innerHTML = `<div style="font-weight:600">Summoned Unit</div><div id="sc-card-count" style="font-size:12px;color:#9ca3af;margin-top:6px">Open to view</div>`;
-  document.body.appendChild(card);
-
-  card.addEventListener('click', sc_showPopup);
-  sc_renderCard();
-}
-
-// update small text on card
-function sc_renderCard() {
-  const el = document.getElementById('sc-card-count');
-  if (!el) return;
-  // show total summons and top 3 units
-  const total = Object.values(sc_counts).reduce((s,v)=>s+v,0);
-  const entries = Object.entries(sc_counts).sort((a,b)=>b[1]-a[1]);
-  let top = entries.slice(0,3).map(e => `${e[0]} (${e[1]})`).join(', ');
-  if (!top) top = 'No summons yet';
-  el.innerHTML = `Total: ${total} • ${top}`;
-}
-
-// popup modal
-function sc_showPopup() {
-  // if modal exists toggle visible
-  let modal = document.getElementById('sc-modal');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'sc-modal';
-    modal.style.position = 'fixed';
-    modal.style.inset = '0';
-    modal.style.zIndex = '10000';
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.background = 'rgba(0,0,0,0.6)';
-
-    const box = document.createElement('div');
-    box.style.width = '420px';
-    box.style.maxHeight = '80vh';
-    box.style.overflow = 'auto';
-    box.style.background = '#071024';
-    box.style.border = '1px solid rgba(255,255,255,0.06)';
-    box.style.padding = '18px';
-    box.style.borderRadius = '12px';
-    box.style.color = '#e6eef8';
-    box.style.boxShadow = '0 10px 40px rgba(0,0,0,0.7)';
-
-    const title = document.createElement('div');
-    title.style.fontSize = '18px';
-    title.style.fontWeight = '700';
-    title.style.marginBottom = '8px';
-    title.textContent = 'Summoned Units';
-
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Close';
-    closeBtn.style.float='right';
-    closeBtn.style.marginLeft='8px';
-    closeBtn.onclick = () => modal.remove();
-
-    const resetBtn = document.createElement('button');
-    resetBtn.textContent = 'Reset Counts';
-    resetBtn.style.background = '#8b5cf6';
-    resetBtn.style.color = '#fff';
-    resetBtn.style.border = 'none';
-    resetBtn.style.padding = '6px 8px';
-    resetBtn.style.borderRadius = '8px';
-    resetBtn.onclick = () => {
-      if (!confirm('Reset all summon counts?')) return;
-      sc_counts = {};
-      sc_saveCounts(sc_counts);
-      sc_renderModalList(); sc_renderCard();
-    };
-
-    const headerDiv = document.createElement('div');
-    headerDiv.style.display = 'flex';
-    headerDiv.style.justifyContent = 'space-between';
-    headerDiv.style.alignItems = 'center';
-    headerDiv.appendChild(title);
-    const controlWrap = document.createElement('div');
-    controlWrap.appendChild(resetBtn);
-    controlWrap.appendChild(closeBtn);
-    headerDiv.appendChild(controlWrap);
-
-    const list = document.createElement('div');
-    list.id = 'sc-modal-list';
-    list.style.marginTop = '12px';
-    list.style.fontSize = '14px';
-    list.style.lineHeight = '1.6';
-    list.style.color = '#cfe8ff';
-
-    box.appendChild(headerDiv);
-    box.appendChild(list);
-    modal.appendChild(box);
-    document.body.appendChild(modal);
-  }
-  sc_renderModalList();
-}
-
-function sc_renderModalList() {
-  const list = document.getElementById('sc-modal-list');
-  if (!list) return;
-  list.innerHTML = '';
-  const entries = Object.entries(sc_counts).sort((a,b)=>b[1]-a[1]);
-  if (entries.length === 0) {
-    list.innerHTML = '<div style="color:#8b9db5">No summoned units yet.</div>';
-    return;
-  }
-  entries.forEach(([name,count]) => {
-    const row = document.createElement('div');
-    row.style.display = 'flex';
-    row.style.justifyContent = 'space-between';
-    row.style.padding = '6px 0';
-    row.innerHTML = `<div>${name}</div><div style="font-weight:700">${count}</div>`;
-    list.appendChild(row);
-  });
-}
-
-// Init: create card UI then try to attach observer
-(function sc_init(){
-  try {
-    sc_createCardUI();
-    sc_waitForResultElement(3000).then(found => {
-      if (found) {
-        sc_setupObserver();
-      } else {
-        // nếu không có #summon-result, vẫn ok — bạn có thể gọi sc_recordSummon manually từ script summon
-        console.info('sc: #summon-result not found; fallback to manual recording available as window.sc_recordSummon(name).');
-      }
-    });
-  } catch(e) {
-    console.error('sc init error', e);
-  }
-})();
-
-// make API global (safe names)
-window.sc_recordSummon = sc_recordSummon;
-window.sc_getCounts = () => ({ ...sc_counts });
-window.sc_resetCounts = () => { sc_counts={}; sc_saveCounts(sc_counts); sc_renderCard(); };
-
-// End module
 </script>
 
 </body>
