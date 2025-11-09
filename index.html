@@ -527,23 +527,22 @@
   { name: 'Titan Televsionman', rate: 0.01/3 },
   { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
 ];
- function summon(times) {
+function summon(times) {
    let results = [];
-      for (let i = 0; i < times; i++) {
+   for (let i = 0; i < times; i++) {
         let roll = Math.random() * 100;
         let total = 0;
         for (let unit of summonRates) {
           total += unit.rate;
           if (roll <= total) {
             results.push(unit.name);
+            addSummonedUnit(unit.name); // <-- thêm ở đây
             break;
           }
         }
-      }
-      document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-     addSummonedUnit(unit.name);
-    }
-
+   }
+   document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+}
 const rarityColors = {
   "Normal Agent": "#00FFFF",
   "Special Agent": "#FFD700",
@@ -703,7 +702,6 @@ function addSummonedUnit(unitName) {
   summonedCounts[unitName]++;
   saveSummonedCounts();
 }
-</script>
 </script>
 </body>
 </html>
