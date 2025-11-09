@@ -543,8 +543,6 @@
       document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
     }
 </script>
-<script>
-
   function showPopup(title, units) {
     document.getElementById('popup-title').textContent = title;
     const list = document.getElementById('popup-list');
@@ -570,58 +568,6 @@
     const info = card.querySelector('.unit-info');
     info.classList.toggle('hidden');
   }
-
-  // Summon simulator
-  const summonRates = [
-    { name: 'Kameraman', rate: 70.898999/4 },
-    { name: 'Spikerman', rate: 70.898999/4 },
-    { name: 'Televsionman', rate: 70.898999/4 },
-    { name: 'SkiToilet', rate: 70.898999/4 },
-    { name: 'Plunger Kameraman', rate: 28/7 },
-    { name: 'Dark Knife Spikerman', rate: 28/7 },
-    { name: 'Scientist Spikerman', rate: 28/7 },
-    { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7 },
-    { name: 'Scientist SkiToilet', rate: 28/7 },
-    { name: 'Scientist Kameraman', rate: 28/7 },
-    { name: 'Scientist Televisionman', rate: 28/7 },
-    { name: 'Large Kameraman', rate: 1/5 },
-    { name: 'Large Spikerman', rate: 1/5 },
-    { name: 'Large Televisionman', rate: 1/5 },
-    { name: 'Large Scientist Kameraman', rate: 1/5 },
-    { name: 'Large SkiToilet', rate: 1/5 },
-    { name: 'Titan Kameraman', rate: 0.01/3 },
-    { name: 'Titan Spikerman', rate: 0.01/3 },
-    { name: 'Titan Televsionman', rate: 0.01/3 },
-    { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
-  ];
-
-  function summon(times) {
-    const results = [];
-    for (let i = 0; i < times; i++) {
-      const roll = Math.random() * 100;
-      let total = 0;
-      for (const unit of summonRates) {
-        total += unit.rate;
-        if (roll <= total) {
-          results.push(unit.name);
-          break;
-        }
-      }
-    }
-    document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-  }
-</script>
-<!-- 🔹 Vùng hiển thị Summon -->
-<div>
-  <button onclick="summon(1)">Summon 1</button>
-  <button onclick="summon(10)">Summon 10</button>
-  <p>Points Spent: <span id="pointsSpent">0</span></p>
-  <div id="summon-result"></div>
-</div>
-
-<!-- 🔹 Vùng hiển thị card count riêng -->
-<div id="summoned-units-card" style="margin-top:20px;"></div>
-
 <script>
 // 🎲 Summon Simulator
 const summonRates = [
