@@ -611,39 +611,103 @@
     document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
   }
 </script>
+<!-- 🔹 Vùng hiển thị Summon -->
+<div>
+  <button onclick="summon(1)">Summon 1</button>
+  <button onclick="summon(10)">Summon 10</button>
+  <p>Points Spent: <span id="pointsSpent">0</span></p>
+  <div id="summon-result"></div>
+</div>
+
+<!-- 🔹 Vùng hiển thị card count riêng -->
+<div id="summoned-units-card" style="margin-top:20px;"></div>
+
 <script>
-// 🧮 Summon Counter System (Độc lập nhưng theo dõi summon chính)
+// 🎲 Summon Simulator
+const summonRates = [
+  { name: 'Kameraman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Spikerman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Televsionman', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'SkiToilet', rate: 70.898999/4, count: 0, rarity: 'Normal Agent' },
+  { name: 'Plunger Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Dark Knife Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Spikerman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist SkiToilet', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Kameraman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Scientist Televisionman', rate: 28/7, count: 0, rarity: 'Special Agent' },
+  { name: 'Large Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Spikerman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Televisionman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large Scientist Kameraman', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Large SkiToilet', rate: 1/5, count: 0, rarity: 'Large Agent' },
+  { name: 'Titan Kameraman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Titan Spikerman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Titan Televsionman', rate: 0.01/3, count: 0, rarity: 'Titans' },
+  { name: 'Upgraded Titan Kameraman', rate: 0.000001, count: 0, rarity: 'Upgraded Titans' }
+];
+
+let pointsSpent = 0;
+
+// 🧮 Dữ liệu lưu
 let summonCountData = JSON.parse(localStorage.getItem('summonCountData')) || {};
 let totalSummons = JSON.parse(localStorage.getItem('totalSummons')) || 0;
 
-// 🔹 Hàm lưu dữ liệu
 function saveSummonData() {
   localStorage.setItem('summonCountData', JSON.stringify(summonCountData));
   localStorage.setItem('totalSummons', JSON.stringify(totalSummons));
 }
 
-// 🔹 Hàm đếm mỗi khi summon xong
-function addSummonResult(unitName) {
-  if (!summonCountData[unitName]) summonCountData[unitName] = 0;
-  summonCountData[unitName]++;
-  totalSummons++;
-  saveSummonData();
+// Hàm random summon
+function summonUnit() {
+  const totalRate = summonRates.reduce((sum, unit) => sum + unit.rate, 0);
+  let rand = Math.random() * totalRate;
+
+  for (let unit of summonRates) {
+    if (rand < unit.rate) {
+      unit.count++;
+      pointsSpent += 100;
+
+      // 🧾 Cộng count vào bộ lưu
+      if (!summonCountData[unit.name]) summonCountData[unit.name] = 0;
+      summonCountData[unit.name]++;
+      totalSummons++;
+      saveSummonData();
+
+      return unit;
+    }
+    rand -= unit.rate;
+  }
+  return null;
 }
 
-// 🔹 Gọi hàm này sau khi summon trong script lớn của cậu
-// Ví dụ trong script summon chính có chỗ:
-//    results.push(unit.name);
-// Thì thêm dòng: addSummonResult(unit.name);
+// Summon nhiều lần
+function summon(times) {
+  const results = [];
+  for (let i = 0; i < times; i++) {
+    const unit = summonUnit();
+    if (unit) results.push(unit);
+  }
 
-// 🔹 Hiển thị card Summoned Units
+  document.getElementById('pointsSpent').innerText = pointsSpent;
+  document.getElementById('summon-result').innerHTML =
+    `🎁 You got:<br>${results.map(u => u.name).join(', ')}`;
+
+  renderSummonCard(); // cập nhật card mỗi lần summon
+}
+
+// 🎴 Hiển thị card đếm riêng
 function renderSummonCard() {
   const container = document.getElementById('summoned-units-card');
   container.innerHTML = `
-    <div class="card bg-gray-800 text-white p-4 rounded-xl shadow-md">
-      <h3 class="text-lg font-semibold mb-2">📦 Summoned Units</h3>
-      <p class="text-sm mb-2">Total Summons: ${totalSummons}</p>
-      <button id="toggleSummonedList" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mb-3">Show / Hide List</button>
-      <ul id="summonedList" class="hidden list-disc ml-4"></ul>
+    <div class="card" style="background:#222;color:white;padding:15px;border-radius:10px;width:250px">
+      <h3 style="margin-top:0;">📦 Summoned Units</h3>
+      <p>Total Summons: ${totalSummons}</p>
+      <button id="toggleSummonedList"
+        style="background:#007bff;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">
+        Show / Hide List
+      </button>
+      <ul id="summonedList" style="display:none;margin-top:10px;list-style:disc;padding-left:20px;"></ul>
     </div>
   `;
 
@@ -655,12 +719,14 @@ function renderSummonCard() {
   });
 
   document.getElementById('toggleSummonedList').addEventListener('click', () => {
-    list.classList.toggle('hidden');
+    list.style.display = list.style.display === 'none' ? 'block' : 'none';
   });
 }
 
-// 🔹 Tự động hiển thị khi mở web
+// Tự render khi mở lại web
 document.addEventListener('DOMContentLoaded', renderSummonCard);
+</script>
+
 </script>
 
 </body>
