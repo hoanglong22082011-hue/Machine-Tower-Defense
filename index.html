@@ -541,10 +541,9 @@
         }
       }
       document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
+     addSummonedUnit(unit.name);
     }
-  addSummonedUnit(unit.name);
-</script>
-// ================== SUMMONED UNIT DISPLAY & COUNT ==================
+
 const rarityColors = {
   "Normal Agent": "#00FFFF",
   "Special Agent": "#FFD700",
@@ -704,8 +703,6 @@ function addSummonedUnit(unitName) {
   summonedCounts[unitName]++;
   saveSummonedCounts();
 }
-
 </script>
-
 </body>
 </html>
