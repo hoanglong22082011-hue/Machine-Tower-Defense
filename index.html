@@ -1,753 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Machine Tower Defense Update Log - Alpha Release</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-black text-gray-100 font-sans">
-  <div class="max-w-5xl mx-auto px-6 py-10 space-y-12">
-    <header class="text-center">
-      <h1 class="text-4xl font-bold text-white mb-2">Machine Tower Defense</h1>
-      <p class="text-gray-400 italic">Alpha Release</p>
-    </header>
-    <!-- ================= UNITS SECTION ================= -->
-    <section>
-      <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4">Units</h2>
-      <div class="unit-grid">
-        <!-- Normal Agent -->
-<div class="unit-card normal" onclick="showPopup('Normal Agent', ['Kameraman', 'Spikerman', ' Televisionman','SkiToilet'])">
-          <h3>Normal Agent <span class="text-gray-500 text-sm">(Basic)</span></h3>
-        </div>
-        
-        <!-- Special Agent -->
-        <div class="unit-card special" onclick="showPopup('Special Agent', ['Plunger Kameraman', 'Dark Knife Spikerman', 'Daddy Televisionman – Astro Arc (Soon)', 'Scientist SkiToilet', 'Scientist Kameraman', 'Scientist Televisionman', 'Scientist Spikerman'])">
-          <h3>Special Agent <span class="text-gray-500 text-sm">(Rare – Epic)</span></h3>
-        </div>
-
-        <!-- Large Agent -->
-        <div class="unit-card large" onclick="showPopup('Large Agent', ['Large Kameraman', 'Large Spikerman', 'Large Televisionman', 'Large SkiToilet (Soon)', 'Large Scientist Kameraman (Soon)'])">
-          <h3>Large Agent <span class="text-gray-500 text-sm">(Legendary)</span></h3>
-        </div>
-
-        <!-- Titan -->
-        <div class="unit-card titan" onclick="showPopup('Titan', ['Titan Kameraman (In Alpha Release)', 'Titan Spikerman (In Alpha Update)', 'Titan Televisionman (In TV Arc Update)', 'Boss G-Toilet'])">
-          <h3>Titan <span class="text-gray-500 text-sm">(Mythic)</span></h3>
-        </div>
-
-        <!-- Upgraded Titan -->
-        <div class="unit-card upgraded" onclick="showPopup('Upgraded Titan', ['Upgraded Titan Kameraman', 'Upgraded Titan Spikerman', 'Upgraded Titan Televisionman', 'Superior Boss G-Toilet'])">
-          <h3>Upgraded Titan <span class="text-gray-500 text-sm">(Godly)</span></h3>
-        </div>
-
-        <!-- Admin Unit -->
-        <div class="unit-card admin" onclick="showPopup('Admin Unit', ['Cheems_sama Kameraman (SUPER OPPP 360 AOE)'])">
-          <h3>Admin Unit <span class="text-gray-500 text-sm">(???)</span></h3>
-        </div>
-      </div>
-      <p class="text-sm text-gray-500 italic mt-4">
-        Note: Toilet will release in Astro Arc Update and Scientist Units in Scientist Update, will be added later.
-      </p>
-    </section>
-<!-- 🌍 MAPS SECTION -->
-<section>
-  <h2 class="text-2xl font-semibold text-green-400 border-b border-gray-700 pb-2 mb-4">Maps</h2>
-  
-  <div class="map-grid">
-    <div class="map-card">
-      <h3>Easy Mode-Machine City</h3>
-      <p>Default map – First battleground against Toilets.</p>
-    </div>
-
-    <div class="map-card">
-      <h3>Medium Mode-Desert Warfield</h3>
-      <p>Good! Newbie You won the first challenge</p>
-    </div>
-
-    <div class="map-card">
-      <h3>Hard Mode-Ruined Town</h3>
-      <p>No way,why you can win it</p>
-    </div>
-
-    <div class="map-card">
-      <h3>Apocalypse Mode-Alpha Hills</h3>
-      <p>What Happend here</p>
-    </div>
-
-    <div class="map-card">
-      <h3>Astro Arc</h3>
-      <p>We got a invasion </p></p>
-    </div>
-  </div>
-</section>
-
-<style>
-.map-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.map-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  transition: 0.3s ease;
-}
-
-.map-card:hover {
-  background: rgba(0, 255, 150, 0.1);
-  transform: scale(1.03);
-  box-shadow: 0 0 15px rgba(0, 255, 150, 0.3);
-}
-
-.map-card h3 {
-  color: #00ff9d;
-  font-size: 1.25rem;
-  margin-bottom: 8px;
-  font-weight: 600;
-  text-shadow: 0 0 10px #00ff9d;
-}
-</style>
-<!-- 💎 PARTNER SECTION -->
-<section>
-  <h2 class="text-2xl font-semibold text-pink-400 border-b border-gray-700 pb-2 mb-4">Partner</h2>
-
-  <div class="info-card">
-    <ul class="list-disc list-inside text-gray-300 ml-4">
-      <li>Role in Game (Famous In Game) <span class="text-pink-500">(Soon)</span></li>
-      <li>Sign Unit (Buff Value) <span class="text-pink-500">(Soon)</span></li>
-      <li>Partner Pack – All Unit <span class="text-pink-500">(Soon)</span></li>
-      <li>Trading (Testing Script) <span class="text-pink-500">(Soon)</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- 🧠 DEVS SECTION -->
-<section>
-  <h2 class="text-2xl font-semibold text-blue-400 border-b border-gray-700 pb-2 mb-4 mt-6">Developers</h2>
-
-  <div class="info-card">
-    <ul class="list-disc list-inside text-gray-300 ml-4">
-      <li>Role in Game (Famous in Game) <span class="text-blue-400">(Soon)</span></li>
-      <li>Sign Unit (Buff Value) <span class="text-blue-400">(Soon)</span></li>
-      <li>Comment – Can self give units <span class="text-blue-400">(Soon)</span></li>
-      <li>Yah,can make your own unit <span class="text-blue-400">(Soon)</span></li>
-      <li class="text-red-400 font-semibold">CAN TROLL PLAYERS HI HAHAHA 😈</li>
-    </ul>
-  </div>
-
-  <!-- 🔧 DEV ROLES -->
-  <h3 class="text-xl font-semibold text-blue-300 mt-6 mb-2">Dev Roles</h3>
-
-  <div class="info-card">
-    <ul class="list-disc list-inside text-gray-300 ml-4">
-
-      <li>
-        <span class="text-blue-400 font-semibold">Scripter</span>
-        <ul class="list-disc list-inside ml-6 text-gray-400">
-          <li>GUI & UI</li>
-          <li>Teleport Scripts</li>
-          <li>Banner Scripts</li>
-          <li>Units Scripts</li>
-        </ul>
-      </li>
-
-      <li class="mt-3">
-        <span class="text-blue-400 font-semibold">Animationer</span>
-        <ul class="list-disc list-inside ml-6 text-gray-400">
-          <li>Animations</li>
-        </ul>
-      </li>
-
-      <li class="mt-3">
-        <span class="text-blue-400 font-semibold">Model Designer</span>
-        <ul class="list-disc list-inside ml-6 text-gray-400">
-          <li>Maps</li>
-          <li>Unit Models</li>
-          <li>Teleport Models</li>
-          <li>Banner Models</li>
-        </ul>
-      </li>
-
-      <li class="mt-3">
-        <span class="text-blue-400 font-semibold">Owner</span>
-        <ul class="list-disc list-inside ml-6 text-gray-400">
-          <li>Completes tasks unfinished by other developers</li>
-          <li>Supports scripting when needed</li>
-        </ul>
-      </li>
-
-    </ul>
-  </div>
-</section>
-
-
-<!-- 💰 ROBUX & SUMMON SECTION -->
-<section>
-  <h2 class="text-2xl font-semibold text-yellow-300 border-b border-gray-700 pb-2 mb-4 mt-6">Robux Unit</h2>
-  
-  <div class="info-card">
-    <p class="text-gray-300 ml-4">??? — It's a <span class="text-yellow-400 font-semibold">Large Agent</span></p>
-  </div>
-
-  <h2 class="text-2xl font-semibold text-yellow-300 border-b border-gray-700 pb-2 mb-4 mt-6">Summon Unit</h2>
-
-  <div class="info-card">
-    <p class="text-gray-300"><strong>Cost:</strong></p>
-    <ul class="list-disc list-inside text-gray-300 ml-4">
-      <li>100 Points → 1 Summon</li>
-      <li>900 Points → 10 Summons</li>
-      <li>1800 Points → 20 Summons</li>
-    </ul>
-
-    <p class="text-gray-300 mt-3"><strong>Summon Rate:</strong></p>
-    <ul class="list-disc list-inside text-gray-300 ml-4">
-      <li>Normal Agents — <span class="text-green-400">70.898999%</span></li>
-      <li>Special Agents — <span class="text-purple-400">28%</span></li>
-      <li>Large Agents — <span class="text-yellow-400">1%</span></li>
-      <li>Titans — <span class="text-red-400">0.01%</span></li>
-      <li>Upgraded Titans — <span class="text-blue-400">0.000001%</span></li>
-    </ul>
-  </div>
-</section>
-
-<style>
-.info-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 16px;
-  margin-top: 10px;
-  transition: 0.3s ease;
-}
-.info-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(255,255,255,0.1);
-}
-</style>
-
-  <!-- ================== DPS UNITS ================== -->
-<section>
-  <h2 class="text-2xl font-semibold text-cyan-400 border-b border-gray-700 pb-2 mb-4">⚔️ DPS Units</h2>
-
-  <div class="unit-grid">
-
-    <!-- NORMAL AGENT -->
-    <div class="unit-card normal" onclick="toggleUnit(this)">
-      <h3>Normal Agent</h3>
-      <div class="unit-info hidden">
-        <p><strong>Kameraman</strong></p>
-        <ul>
-          <li>Damage: 5 → 20</li>
-          <li>Cooldown: 1s</li>
-          <li>DPS: 5 → 20</li>
-          <li>Range: 5 → 10</li>
-        </ul>
-
-        <p><strong>Spikerman</strong></p>
-        <ul>
-          <li>Damage: 7 → 25</li>
-          <li>Cooldown: 1s</li>
-          <li>DPS: 25</li>
-          <li>Range: 5 → 10</li>
-        </ul>
-
-        <p><strong>TelevisionMan (AOE)</strong></p>
-        <ul>
-          <li>Damage: 5 → 15</li>
-          <li>Cooldown: 0.5s</li>
-          <li>DPS: 10 → 30</li>
-          <li>Range: 10 → 25</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SPECIAL AGENT -->
-    <div class="unit-card special" onclick="toggleUnit(this)">
-      <h3>Special Agent</h3>
-      <div class="unit-info hidden">
-        <p><strong>Plunger Kameraman</strong></p>
-        <ul>
-          <li>Damage: 10 → 40</li>
-          <li>Cooldown: 0.5s</li>
-          <li>DPS: 20 → 80</li>
-          <li>Range: 15 → 40</li>
-        </ul>
-
-        <p><strong>Dark Knife Spikerman (Splash)</strong></p>
-        <ul>
-          <li>Damage: 50 → 50</li>
-          <li>Cooldown: 2 → 0.5s</li>
-          <li>DPS: 25 → 100</li>
-          <li>Range: 10 → 25</li>
-        </ul>
-
-        <p><strong>Daddy Televisionman (2 Circle AOE)</strong></p>
-        <ul>
-          <li>Damage: 20 → 24</li>
-          <li>Cooldown: 1 → 0.2s</li>
-          <li>DPS: 20 → 120</li>
-          <li>Range: 20 → 50</li>
-          <li>Damge:100->150</li>
-          <li>Cooldown:5->3</li>
-          <li>DPS: 20->50</li>
-          <li>Range: 10->20</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- LARGE AGENT -->
-    <div class="unit-card large" onclick="toggleUnit(this)">
-      <h3>Large Agent</h3>
-      <div class="unit-info hidden">
-        <p><strong>Large Kameraman</strong></p>
-        <ul>
-          <li>Damage: 20 → 60</li>
-          <li>Cooldown: 1 → 0.2s</li>
-          <li>DPS: 20 → 300</li>
-          <li>Range: 10 → 25</li>
-        </ul>
-
-        <p><strong>Large Spikerman</strong></p>
-        <ul>
-          <li>Damage: 100 → 200</li>
-          <li>Cooldown: 1 → 0.4s</li>
-          <li>DPS: 100 → 500</li>
-          <li>Range: 15 → 40</li>
-        </ul>
-
-        <p><strong>Large Televisionman (AOE)</strong></p>
-        <ul>
-          <li>Damage: 25 → 30</li>
-          <li>Cooldown: 0.5 → 0.1s</li>
-          <li>DPS: 50 → 300</li>
-          <li>Range: 25 → 60</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- TITAN -->
-    <div class="unit-card titan" onclick="toggleUnit(this)">
-      <h3>Titan</h3>
-      <div class="unit-info hidden">
-        <p><strong>Titan Kameraman (3 Circle, Smallest = 180 AOE)</strong></p>
-        <ul>
-          <li>Damage: 25 → 50</li>
-          <li>Cooldown: 1 → 0.2s</li>
-          <li>DPS: 25 → 250</li>
-          <li>Range: 40 → 75</li>
-          <li>Damage: 200 → 500</li>
-          <li>Cooldown: 5 → 2s</li>
-          <li>DPS: 60 → 250</li>
-          <li>Range: 20 → 45</li>
-          <li>Damage: 1000 → 2000</li>
-          <li>Cooldown: 10 → 5s</li>
-          <li>DPS: 100 → 400</li>
-          <li>Range: 10 → 30</li>
-        </ul>
-
-        <p><strong>Titan Spikerman (2 Circle, Largest is splash, Smallest = 90 AOE)</strong></p>
-        <ul>
-          <li>Damage: 200 → 8000</li>
-          <li>Cooldown: 10 → 5s</li>
-          <li>DPS: 20 → 1600</li>
-          <li>Range: 55 → 100</li>
-          <li>Damage: 12 → 50</li>
-          <li>Cooldown: 0.5 → 0.2s</li>
-          <li>DPS: 24 → 250</li>
-          <li>Range: 10 → 35</li>
-        </ul>
-
-        <p><strong>Titan Televisionman (2 Circle, Largest = 200 AOE)</strong></p>
-        <ul>
-          <li>Damage: 50 → 150</li>
-          <li>Cooldown: 0.5 → 0.2s</li>
-          <li>DPS: 100 → 750</li>
-          <li>Range: 35 → 70</li>
-          <li>Damage: 1000 → 9000</li>
-          <li>Cooldown: 5 → 2s</li>
-          <li>DPS: 200 → 4500</li>
-          <li>Range: 10 → 30</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- UPGRADED TITAN -->
-    <div class="unit-card upgraded" onclick="toggleUnit(this)">
-      <h3>Upgraded Titan</h3>
-      <div class="unit-info hidden">
-        <p><strong>Upgraded Titan Kameraman (4 Circle,Second largest = Splash , Smallest = 180 AOE)</strong></p>
-        <ul>
-          <li>Damage: 200 → 150</li>
-          <li>Cooldown: 1 → 0.2s</li>
-          <li>DPS: 200 → 750</li>
-          <li>Range: 50 → 120</li>
-          <li>Damage: 1200 → 10000</li>
-          <li>Cooldown: 5 → 2s</li>
-          <li>DPS: 240 → 5000</li>
-          <li>Range: 40 → 70</li>
-          <li>Damage: 1000 → 20000</li>
-          <li>Cooldown: 10 → 5s</li>
-          <li>DPS: 100 → 4000</li>
-          <li>Range: 20 → 45</li>
-          <li>Damage: 10 → 200</li>
-          <li>Cooldown: 0.1 → 0.1s</li>
-          <li>DPS: 100 → 200</li>
-          <li>Range: 15 → 35</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ADMIN UNIT -->
-    <div class="unit-card admin" onclick="toggleUnit(this)">
-      <h3>Admin Unit</h3>
-      <div class="unit-info hidden">
-        <p><strong>Cheems_sama Kameraman (SUPERRRRR OPPPPPPP ,360 AOE)</strong></p>
-        <ul>
-          <li>Damage: ∞</li>
-          <li>Cooldown: 0.000000000001s</li>
-          <li>DPS: ∞</li>
-          <li>Range: ∞</li>
-          <li>Effect: Delete any enemy instantly 😈</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <p style="text-align:center; font-style: italic; margin-top: 15px;">*DPS (Damage per Second)</p>
-</section>
-
-<style>
-  .unit-card {
-    background: #0a0a0a;
-    border: 2px solid cyan;
-    border-radius: 10px;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .unit-card:hover {
-    transform: scale(1.03);
-  }
-  .unit-info {
-    margin-top: 10px;
-    transition: all 0.3s ease;
-  }
-  .hidden {
-    display: none;
-  }
-</style>
-
-<script>
-  function toggleUnit(card) {
-    const info = card.querySelector('.unit-info');
-    info.classList.toggle('hidden');
-  }
-</script>
-
-      <!-- ================= SUMMON SIMULATOR ================= -->
-    <section class="text-center mt-16">
-      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">🎲 Summon Simulator</h2>
-      <p class="text-gray-400 mb-3">Try your luck and summon Units based on actual rates!</p>
-
-      <div class="space-x-4 mb-4">
-        <button onclick="summon(1)" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-xl">Summon 1</button>
-        <button onclick="summon(10)" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-xl">Summon 10</button>
-      </div>
-
-      <div id="summon-result" class="text-cyan-400 text-lg font-semibold mt-4"></div>
-    </section>
-  </div>
-
-  <!-- ================= POPUP ================= -->
-  <div id="popup" class="fixed inset-0 bg-black/70 hidden items-center justify-center">
-    <div class="bg-gray-900 border border-cyan-400 rounded-2xl p-6 max-w-md text-center shadow-[0_0_30px_cyan]">
-      <h3 id="popup-title" class="text-2xl font-bold mb-2 text-cyan-300"></h3>
-      <ul id="popup-list" class="text-left list-disc list-inside text-gray-300 mb-4"></ul>
-      <button onclick="closePopup()" class="mt-2 bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl">Close</button>
-    </div>
-  </div>
-
-  <!-- ================= STYLES ================= -->
+  <meta charset="UTF-8">
+  <title>Account Suspension Notice</title>
   <style>
-    .unit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+    body {
+      margin: 0;
+      background: linear-gradient(#0b0f1a, #111);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #e5e5e5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    .unit-card {
-      background: #0a0a0a;
-      color: #fff;
-      border: 2px solid #00ffff;
-      border-radius: 14px;
-      padding: 15px;
+
+    .panel {
+      width: 420px;
+      background: #1a1d2b;
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    }
+
+    .title {
       text-align: center;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .section {
+      margin-bottom: 14px;
+    }
+
+    .label {
+      font-size: 13px;
+      color: #b0b0b0;
+    }
+
+    .value {
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    .offense {
+      background: #141624;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #bcbcbc;
+      margin-top: 12px;
+    }
+
+    .logout {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      background: #2c2f45;
+      color: white;
+      border: none;
+      border-radius: 4px;
       cursor: pointer;
     }
-    .unit-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+
+    .logout:hover {
+      background: #3a3e5e;
     }
 
-    .normal { border-color: #00ffff; }
-    .special { border-color: gold; box-shadow: 0 0 15px gold; }
-    .large { border-color: lime; box-shadow: 0 0 15px lime; }
-    .titan { border-color: red; box-shadow: 0 0 15px red; }
-    .upgraded { border-color: #007bff; box-shadow: 0 0 15px #007bff; }
-    .admin {
-      border-color: #6f00ff;
-      background: linear-gradient(145deg, #000000, #111);
-      box-shadow: 0 0 20px #6f00ff, inset 0 0 20px #6f00ff;
-      animation: adminPulse 3s infinite alternate;
-    }
-
-    @keyframes adminPulse {
-      from { box-shadow: 0 0 20px #6f00ff, inset 0 0 10px #6f00ff; }
-      to { box-shadow: 0 0 40px #b366ff, inset 0 0 25px #b366ff; }
-    }
-
-    .dps-title {
-      color: #00ffff;
+    .fake {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #888;
       text-align: center;
-      font-size: 1.6rem;
-      font-weight: bold;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-      animation: glowPulse 2s infinite alternate;
-    }
-
-    @keyframes glowPulse {
-      from { text-shadow: 0 0 10px #00ffff; }
-      to { text-shadow: 0 0 25px #00ffff, 0 0 50px cyan; }
     }
   </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="title">Bị ban rồi thằng ngu hahhahahaha</div>
 
-  <!-- ================= SCRIPT ================= -->
-  <script>
-    // 📦 Popup function
-    function showPopup(title, units) {
-      document.getElementById('popup-title').textContent = title;
-      const list = document.getElementById('popup-list');
-      list.innerHTML = '';
-      units.forEach(u => {
-        const li = document.createElement('li');
-        li.textContent = u;
-        list.appendChild(li);
-      });
-      document.getElementById('popup').classList.remove('hidden');
-      document.getElementById('popup').classList.add('flex');
-    }
-
-    function closePopup() {
-      document.getElementById('popup').classList.add('hidden');
-      document.getElementById('popup').classList.remove('flex');
-    }
-     // 🎲 Summon Simulator
-   const summonRates = [
-  { name: 'Kameraman', rate: 70.898999/4 },
-  { name: 'Spikerman', rate: 70.898999/4 },
-  { name: 'Televsionman', rate: 70.898999/4 },
-  { name: 'SkiToilet', rate: 70.898999/4 },
-  { name: 'Plunger Kameraman', rate: 28/7 },
-  { name: 'Dark Knife Spikerman', rate: 28/7 },
-  { name: 'Scientist Spikerman', rate: 28/7 },
-  { name: 'Daddy Televisionman – Astro Arc (Soon)', rate: 28/7 },
-  { name: 'Scientist SkiToilet', rate: 28/7 },
-  { name: 'Scientist Kameraman', rate: 28/7 },
-  { name: 'Scientist Televisionman', rate: 28/7 },
-  { name: 'Large Kameraman', rate: 1/5 },
-  { name: 'Large Spikerman', rate: 1/5 },
-  { name: 'Large Televisionman', rate: 1/5 },
-  { name: 'Large Scientist Kameraman', rate: 1/5 },
-  { name: 'Large SkiToilet', rate: 1/5 },
-  { name: 'Titan Kameraman', rate: 0.01/3 },
-  { name: 'Titan Spikerman', rate: 0.01/3 },
-  { name: 'Titan Televsionman', rate: 0.01/3 },
-  { name: 'Upgraded Titan Kameraman', rate: 0.000001 }
-];
-function summon(times) {
-   let results = [];
-   for (let i = 0; i < times; i++) {
-        let roll = Math.random() * 100;
-        let total = 0;
-        for (let unit of summonRates) {
-          total += unit.rate;
-          if (roll <= total) {
-            results.push(unit.name);
-            addSummonedUnit(unit.name); // <-- thêm ở đây
-            break;
-          }
-        }
-   }
-   document.getElementById('summon-result').innerHTML = `🎁 You got:<br>${results.join(', ')}`;
-}
-const rarityColors = {
-  "Normal Agent": "#00FFFF",
-  "Special Agent": "#FFD700",
-  "Large Agent": "#00FF00",
-  "Titan": "#FF0000",
-  "Upgraded Titan": "#8000FF",
-  "Admin Unit": "#B200FF"
-};
-
-const rarityOrder = ["Normal Agent", "Special Agent", "Large Agent", "Titan", "Upgraded Titan"];
-
-const unitRarityMap = {
-  "Kameraman": "Normal Agent",
-  "Spikerman": "Normal Agent",
-  "Televsionman": "Normal Agent",
-  "SkiToilet": "Normal Agent",
-
-  "Plunger Kameraman": "Special Agent",
-  "Dark Knife Spikerman": "Special Agent",
-  "Scientist Spikerman": "Special Agent",
-  "Daddy Televisionman – Astro Arc (Soon)": "Special Agent",
-  "Scientist SkiToilet": "Special Agent",
-  "Scientist Kameraman": "Special Agent",
-  "Scientist Televisionman": "Special Agent",
-
-  "Large Kameraman": "Large Agent",
-  "Large Spikerman": "Large Agent",
-  "Large Televisionman": "Large Agent",
-  "Large Scientist Kameraman": "Large Agent",
-  "Large SkiToilet": "Large Agent",
-
-  "Titan Kameraman": "Titan",
-  "Titan Spikerman": "Titan",
-  "Titan Televsionman": "Titan",
-
-  "Upgraded Titan Kameraman": "Upgraded Titan"
-};
-
-// ---------------- LocalStorage Save / Load ----------------
-let summonedCounts = JSON.parse(localStorage.getItem("summonedCounts")) || {};
-
-function saveSummonedCounts() {
-  localStorage.setItem("summonedCounts", JSON.stringify(summonedCounts));
-}
-
-// ---------------- Summoned Card UI ----------------
-const summonedCard = document.createElement("div");
-summonedCard.style.cssText = `
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  background: #111;
-  border: 2px solid #00FFFF;
-  border-radius: 12px;
-  color: white;
-  padding: 12px 18px;
-  cursor: pointer;
-  box-shadow: 0 0 15px #00FFFF;
-  transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-  z-index: 9999;
-`;
-summonedCard.innerText = "📦 Summoned Units";
-summonedCard.addEventListener("mouseenter", () => {
-  summonedCard.style.transform = "scale(1.05)";
-  summonedCard.style.boxShadow = "0 0 25px #00FFFF";
-});
-summonedCard.addEventListener("mouseleave", () => {
-  summonedCard.style.transform = "scale(1)";
-  summonedCard.style.boxShadow = "0 0 15px #00FFFF";
-});
-document.body.appendChild(summonedCard);
-
-// ---------------- Details Box ----------------
-const detailsBox = document.createElement("div");
-detailsBox.style.cssText = `
-  position: fixed;
-  right: 30px;
-  bottom: 80px;
-  background: rgba(20,20,20,0.95);
-  border-radius: 10px;
-  padding: 15px;
-  width: 340px;
-  max-height: 450px;
-  overflow-y: auto;
-  display: none;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease;
-  z-index: 9998;
-  box-shadow: 0 0 15px #00FFFF;
-`;
-document.body.appendChild(detailsBox);
-
-// ---------------- Toggle Animation ----------------
-summonedCard.addEventListener("click", () => {
-  const visible = detailsBox.style.display === "block";
-  if (visible) {
-    detailsBox.style.opacity = "0";
-    detailsBox.style.transform = "translateY(20px)";
-    setTimeout(() => (detailsBox.style.display = "none"), 300);
-  } else {
-    updateSummonedDisplay();
-    detailsBox.style.display = "block";
-    setTimeout(() => {
-      detailsBox.style.opacity = "1";
-      detailsBox.style.transform = "translateY(0)";
-    }, 10);
-  }
-});
-
-// ---------------- Update Summoned Display ----------------
-function updateSummonedDisplay() {
-  const sortedUnits = Object.keys(summonedCounts).sort((a, b) => {
-    const rarityA = rarityOrder.indexOf(unitRarityMap[a]);
-    const rarityB = rarityOrder.indexOf(unitRarityMap[b]);
-    return rarityA - rarityB;
-  });
-
-  detailsBox.innerHTML = `
-    <h3 style="text-align:center;margin-bottom:10px;color:#00FFFF;">🎖 Summoned Units</h3>
-  `;
-
-  if (sortedUnits.length === 0) {
-    detailsBox.innerHTML += "<p style='text-align:center;color:#888;'>You haven’t summoned anything yet.</p>";
-    return;
-  }
-
-  sortedUnits.forEach(unit => {
-    const rarity = unitRarityMap[unit] || "Unknown";
-    const color = rarityColors[rarity] || "#fff";
-    const count = summonedCounts[unit];
-    const div = document.createElement("div");
-    div.style.cssText = `
-      border: 2px solid ${color};
-      border-radius: 8px;
-      padding: 6px 10px;
-      margin: 5px 0;
-      display: flex;
-      justify-content: space-between;
-      background: rgba(0,0,0,0.4);
-      box-shadow: 0 0 10px ${color}80;
-    `;
-    div.innerHTML = `
-      <span>${unit} <small style="color:${color};">(${rarity})</small></span>
-      <span style="font-weight:bold;">×${count}</span>
-    `;
-    detailsBox.appendChild(div);
-  });
-}
-
-function addSummonedUnit(unitName) {
-  if (!unitName) return;
-  if (!summonedCounts[unitName]) summonedCounts[unitName] = 0;
-  summonedCounts[unitName]++;
-  saveSummonedCounts();
-}
-</script>
-</body>
-</html>
+    <div class="section">
+      <div class="label">Reason</div>
+      <d
