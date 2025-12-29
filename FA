@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông báo tài khoản</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      width: 420px;
+      text-align: center;
+      box-shadow: 0 0 20px red;
+    }
+    .ban {
+      color: red;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .fake {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="ban">Bị ban r thằng ngu</div>
+    <p>Lý do: Thằng Óc cặc sẽ phải trả giá</p>
+    <p>Thời hạn: Vĩnh viễn (NGU)</p>
+
+    <button onclick="alert('Bị lừa rồi =))')">
+      Khiếu nại
+    </button>
+    <div class="fake">
+    </div>
+  </div>
+</body>
+</html>
